@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Server Installation
+
+To install the server dependencies, navigate to the `/server/` directory and run:
+
+`cd /server/`
+`npm install`
+
+
+## To run the server
+
+`node server.js`
