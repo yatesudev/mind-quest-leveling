@@ -31,7 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 To install the server dependencies, navigate to the `/server/` directory and run:
 
-`cd /server/`
+`cd ./server/`
 `npm install`
 
 
