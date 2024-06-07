@@ -1,1 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'VeniceClassic';
+    src: url('/assets/fonts/VeniceClassic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background: hsla(265, 48%, 44%, 1);
+    background: linear-gradient(0deg, hsla(265, 48%, 44%, 1) 0%, hsla(207, 97%, 74%, 1) 100%);
+    background: -moz-linear-gradient(0deg, hsla(265, 48%, 44%, 1) 0%, hsla(207, 97%, 74%, 1) 100%);
+    background: -webkit-linear-gradient(0deg, hsla(265, 48%, 44%, 1) 0%, hsla(207, 97%, 74%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#673AA7", endColorstr="#7AC1FD", GradientType=1 );
+    font-family: 'VeniceClassic', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+}
+
+
+:root {
+    --primary-color: #0000;
+}
+
+.responsive-container {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* Flexbox for layout */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Styles for child elements */
+.item {
+    flex: 1 1 calc(33.333% - 32px); /* Three items per row with some spacing */
+    box-sizing: border-box;
+    padding: 10px 5px;
+    margin: 10px 5px;
+
+    background-color: var(--primary-color);
+    border: 2px solid red;
+    border-radius: 20px;
+
+    /* Center the content */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+
+    /* Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Media queries for responsiveness */
+
+/* tablet */
+@media (max-width: 768px) {
+    .responsive-container .item {
+        flex: 1 1 calc(50% - 32px); /* Two items per row */
+    }
+}
+
+/* mobile */
+@media (max-width: 480px) {
+    .responsive-container .item {
+        flex: 1 1 100%; /* One item per row */
+    }
+}
+
+/* Keyframes for the fade-in-up animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
