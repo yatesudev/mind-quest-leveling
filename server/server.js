@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config(); // Load environment variables from .env file
 
 const mongoURI = process.env.MONGODB_URI;
+const mongoDefaultDB = process.env.MONGODB_DEFAULT_DB;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -25,7 +26,7 @@ app.get('*', (req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`${mongoURI}/${mongoDefaultDB}`, { useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
     console.log('Connected to MongoDB');
   })
