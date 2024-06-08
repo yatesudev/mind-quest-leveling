@@ -5,13 +5,18 @@ const jwt = require('jsonwebtoken');
 
 // Register route
 router.post('/register', async (req, res) => {
+  
   try {
     const { username, email, password } = req.body;
 
     // Check if the user already exists
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ $or: [{ email }, { username }] });
     if (user) {
-      return res.status(400).json({ msg: 'User already exists' });
+      if (user.email === email) {
+        return res.status(400).json({ msg: 'Email already in use' });
+      } else if (user.username === username) {
+        return res.status(400).json({ msg: 'Username already in use' });
+      }
     }
 
     // Create new user
@@ -35,13 +40,13 @@ router.post('/login', async (req, res) => {
     // Check if the user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ msg: 'Invalid credentials' });
+      return res.status(400).json({ msg: 'Email or password is incorrect.' });
     }
 
     // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Invalid credentials' });
+      return res.status(400).json({ msg: 'Email or password is incorrect.' });
     }
 
     // Generate JWT token

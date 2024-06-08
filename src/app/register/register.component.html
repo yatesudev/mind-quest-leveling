@@ -1,75 +1,28 @@
+<div class="responsive-container">
 
-
-  <div class="responsive-container">
     <div class="content">
         <div class="item">
-            <div class="content-wrapper">
-  
-                <h2>Register</h2>
-                <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" ngModel required>
-                    </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" ngModel required>
-                    </div>
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" ngModel required>
-                    </div>
-                    <button type="submit" [disabled]="!registerForm.form.valid">Register</button>
-                </form>
-  
-            </div>
-        </div>
-
-        <div class="item">
-          <div class="content-wrapper">
-
-              <h2>Register</h2>
-              <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
-                  <div>
-                      <label for="username">Username</label>
-                      <input type="text" id="username" name="username" ngModel required>
-                  </div>
-                  <div>
-                      <label for="email">Email</label>
-                      <input type="email" id="email" name="email" ngModel required>
-                  </div>
-                  <div>
-                      <label for="password">Password</label>
-                      <input type="password" id="password" name="password" ngModel required>
-                  </div>
-                  <button type="submit" [disabled]="!registerForm.form.valid">Register</button>
-              </form>
-
-          </div>
-      </div>
-
-      <div class="item">
-        <div class="content-wrapper">
-
             <h2>Register</h2>
             <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
-                <div>
+                <div class="border-box">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" ngModel required>
+                    <input type="text" id="username" name="username" placeholder="enter your username" ngModel required>
                 </div>
-                <div>
+                <div class="border-box">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" ngModel required>
+                    <input type="email" id="email" name="email" placeholder="enter your email address" ngModel required>
                 </div>
-                <div>
+                <div class="border-box">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" ngModel required>
+                    <input type="password" id="password" name="password" placeholder="enter your password" ngModel required>
                 </div>
-                <button type="submit" [disabled]="!registerForm.form.valid">Register</button>
-            </form>
 
+                <div class="border-box">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="confirm your password" ngModel required>
+                </div>
+                <button type="submit" [disabled]="registerForm.form.invalid || registerForm.form.pristine">Register</button>
+            </form>
         </div>
     </div>
-    </div>
-  </div>  
-
+</div>
