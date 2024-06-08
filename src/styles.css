@@ -7,40 +7,56 @@
     font-style: normal;
 }
 
-body::before {
-    background: hsla(265, 48%, 44%, 1);
+
+:root {
+    --primary-color: #0000;
+    --secondary-bg-color: #77706f;
 }
 
 body {
+    background: #77706f;
+    font-family: 'VeniceClassic', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
     background: linear-gradient(180deg, rgba(245, 233, 178, 0.9), rgba(215, 54, 92, 0.5), rgba(22, 15, 87, 0.9));
     background-position: 0% 100%;
     background-size: 800% 800%;
-    background-attachment: fixed;
-
     animation-name: dayNight;
     animation-duration: 120s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-direction: alternate;
-    
-    font-family: 'VeniceClassic', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 2px;
+    pointer-events: none;
+    z-index: -1;
 }
+
 
 .mountainOverlay {
     animation: fadeInUp 0.5s ease forwards;
     background-image: url('./assets/img/bgMountains.png');
-    background-size: contain;
+    background-size: contain; /* Scale the width to 120% and height to 100% */
     background-repeat: repeat-x;
+    background-position: center; /* Center the background image */
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
     pointer-events: none; /* Make the element non-interactive */
-    transform: translateY(-50%); /* Move the element up by half of its own height */
 }
+
+
 
 @media screen and (max-aspect-ratio: 1/1) {
     .mountainOverlay {
@@ -59,11 +75,6 @@ body {
     }
 }
 
-
-:root {
-    --primary-color: #0000;
-}
-
 h1 {
     font-size: 3em;
 }
@@ -73,11 +84,16 @@ h2 {
     font-size: 2.5em;
 }
 
+
 .responsive-container {
     width: 100%;
     padding: 16px;
     box-sizing: border-box;
     margin: 0 auto;
+    max-width: 100vh;
+    overflow: auto;
+    max-height: 100vh;
+    min-height: 60vh;
 }
 
 /* Flexbox for layout */
@@ -85,7 +101,9 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: auto;
 }
+
 
 
 /* Styles for child elements */
@@ -100,6 +118,8 @@ h2 {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s ease forwards;
+
+    
 }
 
 /* Media queries for responsiveness */

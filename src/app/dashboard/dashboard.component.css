@@ -1,0 +1,13 @@
+.content {
+    padding: 10px;
+    border-radius: 15px;
+    padding: 40px;
+    background:rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.219);
+}
+
+.item {
+    background-color: rgb(249, 229, 226);
+    border-radius: 20px;
+    padding: 20px;
+}

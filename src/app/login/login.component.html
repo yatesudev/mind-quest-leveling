@@ -1,12 +1,24 @@
-<h2>Login</h2>
-<form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-  <div>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" ngModel required>
+
+
+
+<div class="responsive-container">
+
+  <div class="content">
+      <div class="item">
+        <h2>Login</h2>
+        <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" ngModel required>
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" ngModel required>
+          </div>
+          <button type="submit" [disabled]="loginForm.form.invalid || loginForm.form.pristine">Login</button>
+        </form>
+      </div>
+
+      
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" ngModel required>
-  </div>
-  <button type="submit" [disabled]="loginForm.form.invalid || loginForm.form.pristine">Login</button>
-</form>
+</div>

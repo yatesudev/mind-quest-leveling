@@ -10,22 +10,26 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FooterComponent } from "./footer/footer.component";
+import { HeaderComponent } from "./header/header.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RegisterComponent,
-    LoginComponent,
-    DashboardComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot()
-  ],
-  providers: [provideHttpClient()],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        RegisterComponent,
+        LoginComponent,
+        DashboardComponent,
+    ],
+    providers: [provideHttpClient()],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        FooterComponent,
+        HeaderComponent
+    ]
 })
 export class AppModule {}
