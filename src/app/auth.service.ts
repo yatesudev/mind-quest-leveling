@@ -19,4 +19,22 @@ export class AuthService {
   login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, userData);
   }
+
+  verifyToken(): Observable<any> {
+    const token = this.getToken();
+    return this.http.post<any>(`${this.apiUrl}/verify-token`, { token });
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  /*
+  logout() {
+    localStorage.removeItem('token');
+  }*/
 }

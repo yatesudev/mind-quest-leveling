@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
 
     // Generate JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+    
     res.status(201).json({ token });
   } catch (err) {
     res.status(500).json({ msg: 'Server error' });
@@ -55,6 +55,22 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ token });
   } catch (err) {
     res.status(500).json({ msg: 'Server error' });
+  }
+});
+
+// Token verification route
+router.post('/verify-token', (req, res) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(400).json({ valid: false, msg: 'No token provided.' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(200).json({ valid: true, decoded });
+  } catch (err) {
+    return res.status(400).json({ valid: false, msg: 'Token is not valid.' });
   }
 });
 
