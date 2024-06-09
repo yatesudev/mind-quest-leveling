@@ -94,6 +94,19 @@ h2 {
     overflow: auto;
     max-height: 100vh;
     min-height: 60vh;
+    padding-top: 13vh;
+    padding-bottom: 13vh;
+}
+
+
+.responsive-container::-webkit-scrollbar {
+    display: none !important;
+}
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .responsive-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* Flexbox for layout */

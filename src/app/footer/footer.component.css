@@ -1,0 +1,39 @@
+footer {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 0;
+    width: 100%;
+    background-color: #0000008a;
+    border: 7px solid rgba(0, 0, 0, 0.458);
+    text-align: center;
+    
+}
+
+ul {
+    list-style-type: none;
+    margin: 15px auto;
+    padding: 0;
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+/* ul mobile 80% */
+@media (max-width: 768px) {
+    ul {
+        width: 80%;
+    }
+}   
+
+li {
+    width: 6vh;
+    height: 6vh;
+    aspect-ratio: 1/1;
+    font-size: 3rem;
+    display: block;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.412);
+
+    border: 7px solid rgba(0, 0, 0, 0.458);
+}

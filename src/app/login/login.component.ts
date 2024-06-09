@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +11,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService, private appComponent: AppComponent) {}
+
+  ngOnInit() {
+    this.appComponent.showFooter = false;
+  }
+
+  ngOnDestroy() {
+    this.appComponent.showFooter = true;
+  }
 
   onSubmit(form: any) {
     this.authService.login(form.value).subscribe({

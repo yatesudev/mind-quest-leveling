@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
+
+import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,8 +14,17 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private appComponent: AppComponent
   ) {}
+
+  ngOnInit() {
+    this.appComponent.showFooter = false;
+  }
+
+  ngOnDestroy() {
+    this.appComponent.showFooter = true;
+  }
 
   onSubmit(form: any) {
 
