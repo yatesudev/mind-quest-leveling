@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from "./footer/footer.component";
-import { HeaderComponent } from "./header/header.component";
+import { CharacterCreationComponent } from './character-creation/character-creation.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +19,8 @@ import { HeaderComponent } from "./header/header.component";
         RegisterComponent,
         LoginComponent,
         DashboardComponent,
+        FooterComponent,
+        CharacterCreationComponent
     ],
     providers: [provideHttpClient()],
     bootstrap: [AppComponent],
@@ -27,9 +29,7 @@ import { HeaderComponent } from "./header/header.component";
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
-        ToastrModule.forRoot(),
-        FooterComponent,
-        HeaderComponent
+        ToastrModule.forRoot()
     ]
 })
 export class AppModule {}

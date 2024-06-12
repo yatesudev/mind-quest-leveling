@@ -74,4 +74,17 @@ router.post('/verify-token', (req, res) => {
   }
 });
 
+// Route to check if user has a character
+router.get('/has-character/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ hasCharacter: !!user.character });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;
