@@ -1,1 +1,19 @@
-<p>character-creation works!</p>
+<div class="responsive-container">
+  <div class="item" *ngIf="!assignedClass; else congratsTemplate">
+    <h2>Character Creation</h2>
+    <p>{{ questions[currentQuestionIndex].text }}</p>
+    <div *ngFor="let option of questions[currentQuestionIndex].options">
+      <button (click)="onAnswer(option)">{{ option.text }}</button>
+    </div>
+  </div>
+  
+  <ng-template #congratsTemplate>
+    <div class="item" class="congratulation-container">
+      <h2>Congratulations!</h2>
+      <p>You are now a {{ assignedClass }}.</p>
+      <img [src]="getCharacterImage()" alt="{{ assignedClass }} image">
+    </div>
+  </ng-template>
+</div>
+
+

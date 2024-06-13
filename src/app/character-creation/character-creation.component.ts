@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CharacterService } from '../character.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -6,8 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './character-creation.component.css',
 })
 export class CharacterCreationComponent {
-  constructor() {}
-
   questions = [
     {
       text: 'How do you prefer to spend your free time?',
@@ -115,4 +115,66 @@ export class CharacterCreationComponent {
       ],
     },
   ];
+
+  constructor(private characterService: CharacterService, private authService: AuthService) {
+    console.log('Character creation component loaded');
+  }
+
+  currentQuestionIndex: number = 0;
+  answers: { [key: string]: number } = {
+    healer: 0,
+    rogue: 0,
+    warrior: 0,
+    mage: 0,
+  };
+  assignedClass: string | null = null;
+
+  onAnswer(option: any): void {
+    Object.keys(option.value).forEach(key => {
+      this.answers[key] += option.value[key];
+    });
+
+    if (this.currentQuestionIndex < this.questions.length - 1) {
+      this.currentQuestionIndex++;
+    } else {
+      this.submitAnswers();
+    }
+  }
+
+  submitAnswers() {
+    console.log('User answers:', this.answers);
+    const assignedClass = Object.keys(this.answers).reduce((a, b) => this.answers[a] > this.answers[b] ? a : b);
+    console.log('Assigned class:', assignedClass);
+    this.assignClassToUser(assignedClass);
+  }
+
+  assignClassToUser(characterClass: string) {
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.characterService.assignClassToUser(userId, characterClass)
+        .subscribe(response => {
+          console.log('Class assigned:', response);
+          this.assignedClass = characterClass;
+        }, error => {
+          console.error('Error assigning class:', error);
+        });
+    } else {
+      console.error('User ID is null');
+    }
+  }
+
+  getCharacterImage(): string {
+    switch (this.assignedClass) {
+      case 'warrior':
+        return 'assets/images/warrior.png';
+      case 'mage':
+        return 'assets/images/mage.png';
+      case 'healer':
+        return 'assets/images/healer.png';
+      case 'rogue':
+        return 'assets/images/rogue.png';
+      default:
+        return 'assets/images/default.png';
+    }
+  }
 }

@@ -74,14 +74,33 @@ router.post('/verify-token', (req, res) => {
   }
 });
 
-// Route to check if user has a character
+// Assign character class route
+router.post('/assign-class', async (req, res) => {
+  const { userId, characterClass } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.character.class = characterClass;
+    await user.save();
+
+    res.status(200).json({ message: 'Character class assigned successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+// Check if user has a character route
 router.get('/has-character/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    res.json({ hasCharacter: !!user.character });
+    res.json({ hasCharacter: !!user.character.class });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }

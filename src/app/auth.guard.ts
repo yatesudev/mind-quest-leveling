@@ -1,8 +1,8 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { CharacterService } from './character.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
@@ -11,17 +11,40 @@ export const authGuard: CanActivateFn = (route, state) => {
   const characterService = inject(CharacterService);
 
   return authService.verifyToken().pipe(
-    map(response => {
+    switchMap(response => {
       if (response.valid) {
-        return true;
+        const userId = authService.getUserId();
+        if (userId) {
+          return characterService.checkUserHasCharacter(userId).pipe(
+            map(characterResponse => {
+              const isCharacterCreationRoute = state.url === '/character-creation';
+              if (characterResponse.hasCharacter) {
+                if (isCharacterCreationRoute) {
+                  router.navigate(['/dashboard']);
+                  return false;
+                }
+                return true;
+              } else {
+                if (isCharacterCreationRoute) {
+                  return true;
+                }
+                router.navigate(['/character-creation']);
+                return false;
+              }
+            })
+          );
+        } else {
+          router.navigate(['/login']);
+          return of(false);
+        }
       } else {
         router.navigate(['/login']);
-        return false;
+        return of(false);
       }
     }),
     catchError(() => {
       router.navigate(['/login']);
-      return new Observable<boolean>(observer => observer.next(false));
+      return of(false);
     })
   );
 };
