@@ -1,0 +1,43 @@
+button {
+    display: block;
+    margin: 1% auto;
+    /* shadow */
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.523);
+    transition: all 0.3s;
+    max-width: 80%;
+    text-transform: none;
+}
+
+ button:hover {
+    scale: 1.1;
+} 
+
+p {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
+    transition: all 0.3s;
+
+    color: white;
+    /* outline black on text with shadow*/
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    margin-bottom: 3%;
+
+
+}
+
+.responsive-container {
+    transition: all 1s;
+}
+
+
+.background {
+    padding: 10px;
+    border-radius: 15px;
+    padding: 40px;
+    background:rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.219);
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+}

@@ -2,8 +2,10 @@
   <div class="item" *ngIf="!assignedClass; else congratsTemplate">
     <h2>Character Creation</h2>
     <p>{{ questions[currentQuestionIndex].text }}</p>
-    <div *ngFor="let option of questions[currentQuestionIndex].options">
-      <button (click)="onAnswer(option)">{{ option.text }}</button>
+    <div class="background">
+      <div *ngFor="let option of questions[currentQuestionIndex].options">
+        <button (click)="onAnswer(option)">{{ option.text }}</button>
+      </div>
     </div>
   </div>
   

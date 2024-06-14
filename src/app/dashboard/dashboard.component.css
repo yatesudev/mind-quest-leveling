@@ -10,6 +10,15 @@
     background-color: rgb(249, 229, 226);
     border-radius: 20px;
     padding: 20px;
+    transition: all 0.3s;
+}
+
+.item:hover {
+    /* drop shadow */
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.819);
+    border: 3px solid rgb(0, 0, 0);
+    z-index: 10;
+    scale: 1.1;
 }
 
 

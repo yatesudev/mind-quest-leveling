@@ -212,3 +212,20 @@ button {
     border-color: #777; /* Adjust active border color */
   }
 
+#footer-character {
+    background-image: url('./assets/img/icons/character.png');
+    background-size: cover;
+    background-repeat: no-repeat;   
+}
+
+#footer-dashboard {
+    background-image: url('./assets/img/icons/dashboard.png');
+    background-size: cover;
+    background-repeat: no-repeat;   
+}
+
+#footer-inventory {
+    background-image: url('./assets/img/icons/inventory.png');
+    background-size: cover;
+    background-repeat: no-repeat;   
+}
