@@ -9,13 +9,15 @@
     </div>
   </div>
   
-  <ng-template #congratsTemplate>
-    <div class="item" class="congratulation-container">
-      <h2>Congratulations!</h2>
-      <p>You are now a {{ assignedClass }}.</p>
-      <img [src]="getCharacterImage()" alt="{{ assignedClass }} image">
-    </div>
-  </ng-template>
+  <div class="item">
+    <ng-template #congratsTemplate>
+      <div class="item" class="congratulation-container">
+        <h2>Congratulations!</h2>
+        <p>You are now a {{ assignedClass }}.</p>
+        <img [src]="getCharacterImage()" alt="{{ assignedClass }} image">
+      </div>
+    </ng-template>
+  </div>
 </div>
 
 
