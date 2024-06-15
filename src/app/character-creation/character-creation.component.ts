@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
-import { setCharacterData } from '../dataHandler';
 
 @Component({
   selector: 'app-character-creation',

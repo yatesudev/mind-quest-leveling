@@ -20,4 +20,8 @@ export class CharacterService {
   checkUserHasCharacter(userId: string): Observable<{ hasCharacter: boolean }> {
     return this.http.get<{ hasCharacter: boolean }>(`${this.apiUrl}/has-character/${userId}`);
   }
+
+  getUserCharacter(userId: string): Observable<{ character: any }> {
+    return this.http.get<{ character: any }>(`${this.apiUrl}/get-character/${userId}`);
+  }
 }

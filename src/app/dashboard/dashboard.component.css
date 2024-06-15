@@ -13,7 +13,7 @@
     transition: all 0.3s;
 }
 
-.item:hover {
+.interactable:hover {
     /* drop shadow */
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.819);
     border: 3px solid rgb(0, 0, 0);
@@ -21,5 +21,59 @@
     scale: 1.1;
 }
 
+#xpContainer {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
 
+.xp-bar {
+    height: 20px;
+    background-color: #4caf50;
+    transition: width 0.5s;
+}
 
+.inline-block {
+    display: flex;
+    flex-wrap: wrap; /* This allows the items to wrap to the next line if necessary */
+    width: 100%;
+}
+
+.inline-block div {
+    flex: 1 1 auto; /* This makes each item flexible and allows it to grow/shrink */
+    min-width: 100px; /* Set a minimum width for each item */
+    margin: 5px; /* Add some margin for spacing between items */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    margin: auto;
+    max-width: fit-content;
+}
+
+.epicTitle {
+    color: rgb(243, 57, 57);
+    /* outline black on text with shadow*/
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    animation: colorChange 25s infinite;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+@keyframes colorChange {
+    0% {
+      color: rgb(191, 221, 249);
+    }
+    25% {
+      color: rgb(191, 249, 191);
+    }
+    50% {
+      color: rgb(249, 191, 230);
+    }
+    75% {
+      color: rgb(245, 249, 191);
+    }
+    100% {
+      color: rgb(217, 191, 249);
+    }
+  }
