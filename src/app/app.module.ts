@@ -12,6 +12,11 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from "./footer/footer.component";
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
+import { InventoryComponent } from './inventory/inventory.component';
+
+import { ItemService } from './item.service';
+import { AuthService } from './auth.service';
+import { CharacterService } from './character.service';
 
 @NgModule({
     declarations: [
@@ -20,9 +25,10 @@ import { CharacterCreationComponent } from './character-creation/character-creat
         LoginComponent,
         DashboardComponent,
         FooterComponent,
-        CharacterCreationComponent
+        CharacterCreationComponent,
+        InventoryComponent
     ],
-    providers: [provideHttpClient()],
+    providers: [provideHttpClient(), ItemService, AuthService, CharacterService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

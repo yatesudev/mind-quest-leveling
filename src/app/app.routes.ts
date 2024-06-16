@@ -12,6 +12,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   { path: 'character-creation', component: CharacterCreationComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard' }
+  
 ];
 
 @NgModule({

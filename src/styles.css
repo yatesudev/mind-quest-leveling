@@ -16,7 +16,7 @@
 body {
     background: #77706f;
     font-family: 'VeniceClassic', sans-serif;
-    font-size: 1.6rem;
+    font-size: calc(calc(1.4vh + 0.2vw)*1.2);
     letter-spacing: 2px;
     overflow: hidden;
     position: relative;
@@ -28,7 +28,7 @@ body::before {
     top: 0;
     left: 0;
     width: 100%;
-    height: 60%;
+    height: 70%;
     background: linear-gradient(180deg, rgba(245, 233, 178, 0.9), rgba(215, 54, 92, 0.5), rgba(22, 15, 87, 0.9));
     background-position: 0% 100%;
     background-size: 800% 800%;
@@ -94,7 +94,6 @@ h2 {
     overflow: auto;
     max-height: 100vh;
     min-height: 60vh;
-    padding-top: 13vh;
     padding-bottom: 13vh;
 }
 
@@ -148,6 +147,12 @@ h2 {
 @media (max-width: 480px) {
     .responsive-container .item {
         flex: 1 1 100%; /* One item per row */
+    }
+
+
+    .item {
+        display: block;
+        font-size: 1.0rem;
     }
 }
 
@@ -228,4 +233,30 @@ button {
     background-image: url('./assets/img/icons/inventory.png');
     background-size: cover;
     background-repeat: no-repeat;   
+}
+
+
+
+
+.mqlHeader {
+    text-align: center;
+    font-size: 350%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    
+    background: -webkit-linear-gradient(#ffef85,#ffe11b, #131313);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subHeader {
+    text-align: center;
+    font-size: 200%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2%;
+    color: aqua;
+    text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+    letter-spacing: 0.2vw;
+
 }
