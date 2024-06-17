@@ -119,4 +119,109 @@ router.get('/get-character/:userId', async (req, res) => {
   }
 });
 
+// Get user inventory
+router.get('/inventory/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ inventory: user.inventory });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+// Update user inventory
+router.put('/inventory/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const { inventory } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.inventory = inventory;
+    await user.save();
+
+    res.status(200).json({ message: 'Inventory updated successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+// Add player item with rarity to inventory
+// router.post('/inventory/:userId/add-item', async (req, res) => {
+//   const { userId } = req.params;
+//   const { itemId, rarity } = req.body;
+
+//   try {
+//     const user = await User.findById(userId);
+//     if (!user) {
+//       return res.status(404).json({ message: 'User not found' });
+//     }
+
+//     // Initialize user inventory if it doesn't exist
+//     if (!user.inventory) {
+//       user.inventory = [];
+//     }
+
+//     // Check if the item already exists in the inventory, if so, update its rarity
+//     let existingItem = user.inventory.find(item => item.itemId === itemId);
+//     if (existingItem) {
+//       existingItem.rarity += rarity;
+//     } else {
+//       // Add the item to the inventory
+//       user.inventory.push({ itemId, rarity });
+//     }
+
+//     await user.save();
+
+//     res.status(200).json({ message: 'Item added to inventory successfully' });
+//   } catch (error) {
+//     console.error('Error adding item to inventory:', error);
+//     res.status(500).json({ message: 'Server error', error });
+//   }
+// });
+
+router.post('/inventory/:userId/add-item', async (req, res) => {
+  const { userId } = req.params;
+  const { itemId, rarity } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Initialize user inventory if it doesn't exist
+    if (!user.inventory) {
+      user.inventory = [];
+    }
+
+    // Check if the item already exists in the inventory
+    let existingItem = user.inventory.find(item => item.itemId === itemId && item.rarity === rarity);
+    if (existingItem) {
+      // If item exists, increment its quantity
+      existingItem.quantity++;
+    } else {
+      // If item does not exist, add it to the inventory with quantity 1
+      user.inventory.push({ itemId, rarity, quantity: 1 });
+    }
+
+    await user.save();
+
+    res.status(200).json({ message: 'Item added to inventory successfully' });
+  } catch (error) {
+    console.error('Error adding item to inventory:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+
+//add PlayerItem with rarity
+
+
 module.exports = router;

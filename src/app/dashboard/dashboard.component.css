@@ -78,3 +78,10 @@
       color: rgb(217, 191, 249);
     }
   }
+
+
+/* unlink a */
+a {
+    text-decoration: none;
+    color: black;
+}

@@ -8,16 +8,24 @@
             <p>Those that are interactable, will have a hover effect.</p>
         </div>
 
-        <div class="item interactable" id="characterData">
-            <h2 class="epicTitle">Character Profile</h2>
-            <div class="inline-block">
-                <div><p id="class">Class: {{ character.class }}</p></div>
-                <div><img [src]="characterImage" alt="{{ character.class }} image"></div>
+        <a href="/profile">
+            <div class="item interactable">
+                <h2 class="epicTitle">Character Profile</h2>
+                <div class="inline-block">
+                    <div><p id="class">Class: {{ character.class }}</p></div>
+                    <div><img [src]="characterImage" alt="{{ character.class }} image"></div>
+                </div>
+                <div id="xpContainer">
+                    <div class="xp-bar" [style.width.%]="xpPercentage"></div>
+                    <p>Level: {{ character.level }}</p>
+                </div>
             </div>
-            <div id="xpContainer">
-                <div class="xp-bar" [style.width.%]="xpPercentage"></div>
-                <p>Level: {{ character.level }}</p>
-            </div>
+        </a>
+
+        <!-- DEVTOOL -->
+        <div class="item interactable">
+            <h2 class="epicTitle">Request Random Items!</h2>
+            <button (click)="requestRandomItems()">Press Me!</button>
         </div>
         
     </div>

@@ -1,1 +1,24 @@
-<p>inventory works!</p>
+<h3 class="subHeader">Profile</h3>
+<div class="responsive-container">
+  <div class="content">
+    <div *ngIf="isDataLoaded">
+      <div class="inventory-container">
+        <div class="inventory-item rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory">
+          <div class="item">
+            <div class="item-image {{getItemDetails(invItem.itemId)?.name}}"></div>
+
+            <div class="item-details">
+              <h3>{{ getItemDetails(invItem.itemId)?.name }} ({{ invItem.quantity }})</h3>
+              <p>rarity level: {{invItem.rarity}}</p>
+              <p><em>"{{ getItemDetails(invItem.itemId)?.description }}"</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="item" *ngIf="!isDataLoaded">
+      Loading inventory...
+    </div>
+  </div>
+</div>

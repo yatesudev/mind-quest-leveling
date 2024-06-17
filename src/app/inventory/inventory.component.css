@@ -1,0 +1,69 @@
+.content {
+    padding: 10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.219);
+  }
+  
+  .inventory-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items in the container */
+    gap: 10px; /* Adjust the gap between items */
+  }
+  
+  .inventory-item {
+    z-index: 100;
+    background-color: rgb(249, 229, 226);
+    border-radius: 20px;
+    padding: 10px; /* Reduced padding for smaller items */
+    transition: all 0.3s;
+    box-shadow: 0px 5px 4px #00000046;
+    flex: 1 1 calc(25% - 10px); /* Calculate item width for 4 items per row */
+    max-width: calc(25% - 10px); /* Set maximum width for each item */
+    min-width: 150px; /* Minimum width to prevent items from becoming too narrow */
+    text-align: center;
+    font-size: 20px; /* Adjust font size for smaller text */
+    line-height: 1.2; /* Adjust line height for better text readability */
+  }
+  
+  .item-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .item-details {
+    margin-top: 5px;
+  }
+  
+
+  .rarityBorder {
+    border: 3px solid;
+  }
+
+  .rarity0 {
+    border-color: rgb(64, 64, 64);
+    /* drop shoadwo */
+  }
+
+  .rarity1 {
+    border-color: rgb(134, 255, 110);
+  }
+
+  .rarity2 {
+    border-color: rgb(79, 51, 237);
+  }
+
+  .rarity3 {
+    border-color: rgb(255, 247, 17);
+  }
+
+  .rarity4 {
+    border-color: red;
+    box-shadow: 0px 0px 10px #ff0303;
+  }
+
+  .rarity5 {
+    border-color: red;
+    box-shadow: 0px 0px 30px #ff0396;
+  }

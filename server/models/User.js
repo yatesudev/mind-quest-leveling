@@ -11,8 +11,16 @@ const userSchema = new mongoose.Schema({
     stats: {
       xp: { type: Number, default: 0 },
     }
-  }
+  },
+  inventory: [
+    {
+      itemId: { type: Number, required: true },
+      rarity: { type: Number, required: true },
+      quantity: { type: Number, default: 1 } // Make quantity optional with a default value
+    }
+  ]
 }, { collection: 'users' });
+
 
 // Hash the password before saving the user
 userSchema.pre('save', async function (next) {
