@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from "./footer/footer.component";
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { LootboxComponent } from './lootbox/lootbox.component';
 
 import { ItemService } from './item.service';
 import { AuthService } from './auth.service';
@@ -26,7 +27,8 @@ import { CharacterService } from './character.service';
         DashboardComponent,
         FooterComponent,
         CharacterCreationComponent,
-        InventoryComponent
+        InventoryComponent,
+        LootboxComponent
     ],
     providers: [provideHttpClient(), ItemService, AuthService, CharacterService],
     bootstrap: [AppComponent],
