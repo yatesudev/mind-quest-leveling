@@ -8,32 +8,33 @@
             <p>We are all free to take changes!</p>
         </div>
 
+        <!-- ng if character undentified then display loading-->
         <div class="item">
             <h2>Change Class</h2>
             <!-- List select or -->
-            <select title="Choose your class">
+            <select #selectedClass (change)="changedClass(selectedClass.value)" title="Choose your class">
                 <option value="warrior">Warrior</option>
                 <option value="mage">Mage</option>
-                <option value="ranger">Ranger</option>
+                <option value="healer">Healer</option>
+                <option value="rogue">Rogue</option>
             </select>
-            <br>
-            <button>Accept</button>
+            <button (click)="changeClass(selectedClass.value)">Accept</button>
         </div>
-    </div>
+    </div> 
+
     <br>
-    <div class="content">
+
+    <div *ngIf="character" class="content">
         <div class="item">
             <h1>Profile</h1>
-            <div class="class-image"></div>
-            <h3>Class: </h3>
-            <h3>Name: </h3>
-            <h3>Email: </h3>
-
-
-
+            <div class="class-image {{character.class}}"></div>
+            <h2 id="class">{{character.class}}</h2>
         </div>
     </div>
+
+
     <br>
+
     <div class="content">
         <div class="item">
             <h2>With great power comes great responsiblity.</h2>

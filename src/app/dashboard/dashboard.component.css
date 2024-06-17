@@ -85,3 +85,18 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.class-image {
+  width: 100px;
+  height: 100px;
+
+  background-color: gray;
+  border: 5px solid black;
+  animation: none;
+}
+
+#class {
+  font-size: 150%;
+  padding: 0;
+  margin: 0;
+}

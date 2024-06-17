@@ -31,7 +31,7 @@ body::before {
     height: 70%;
     background: linear-gradient(180deg, rgba(245, 233, 178, 0.9), rgba(215, 54, 92, 0.5), rgba(22, 15, 87, 0.9));
     background-position: 0% 100%;
-    background-size: 800% 800%;
+    background-size: 100% 800%;
     animation-name: dayNight;
     animation-duration: 120s;
     animation-iteration-count: infinite;
@@ -40,6 +40,9 @@ body::before {
     pointer-events: none;
     z-index: -1;
 }
+
+
+
 
 
 .mountainOverlay {
@@ -64,6 +67,32 @@ body::before {
     100% {
         transform: translateX(-46.5%); /* Move left by 50% of the element's width */
     }
+}
+
+@keyframes slideLeft2 {
+    0% {
+        transform: translateX(-49.5%);
+    }
+    100% {
+        transform: translateX(0%); /* Move left by 50% of the element's width */
+    }
+}
+
+.cloudsOverlay {
+    animation: fadeInUp 0.5s ease forwards, slideLeft2 160s linear infinite;
+    background-image: url('./assets/img/seamlessClouds.png');
+    background-size: auto;
+    background-position: top center; /* Position the background at the top center */
+    background-repeat: repeat-x;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%; /* Double the width to have two instances of the background image */
+    height: 200%;
+    pointer-events: none;
+    overflow: hidden; /* Hide the overflow to ensure only one instance is visible at a time */
+    filter: opacity(0.5);
+    z-index: -1;
 }
 
 
@@ -274,6 +303,57 @@ button {
 
 }
 
+
+/* CLASSES */
+
+@keyframes shadowColorChange {
+    0% {
+        filter: drop-shadow(5px 5px 5px red) drop-shadow(-5px -5px 5px yellow);
+    }
+    25% {
+        filter: drop-shadow(5px 5px 5px yellow) drop-shadow(-5px -5px 5px green);
+    }
+    50% {
+        filter: drop-shadow(5px 5px 5px green) drop-shadow(-5px -5px 5px blue);
+    }
+    75% {
+        filter: drop-shadow(5px 5px 5px blue) drop-shadow(-5px -5px 5px red);
+    }
+    100% {
+        filter: drop-shadow(5px 5px 5px red) drop-shadow(-5px -5px 5px yellow);
+    }
+}
+
+.class-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 248px;
+    height: 248px;
+    margin: auto;
+    animation: shadowColorChange 5s infinite;
+}
+
+
+.mage {
+    background-image: url('./assets/img/avatars/Mage.png');
+}
+
+.warrior {
+    background-image: url('./assets/img/avatars/Warrior.png');
+}
+
+.rogue {
+    background-image: url('./assets/img/avatars/Rogue.png');
+}
+
+.berserk {
+    background-image: url('./assets/img/avatars/Berserk.png');
+}
+
+.healer {
+    background-image: url('./assets/img/avatars/Healer.png');
+}
 
 
 /* ITEMS */

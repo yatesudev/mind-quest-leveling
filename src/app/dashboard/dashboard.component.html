@@ -11,10 +11,8 @@
         <a href="/profile">
             <div class="item interactable">
                 <h2 class="epicTitle">Character Profile</h2>
-                <div class="inline-block">
-                    <div><p id="class">Class: {{ character.class }}</p></div>
-                    <div><img [src]="characterImage" alt="{{ character.class }} image"></div>
-                </div>
+                <div class="class-image {{character.class}}"></div>
+                <div><p id="class">{{ character.class }}</p></div>
                 <div id="xpContainer">
                     <div class="xp-bar" [style.width.%]="xpPercentage"></div>
                     <p>Level: {{ character.level }}</p>
