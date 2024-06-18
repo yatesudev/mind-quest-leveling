@@ -8,6 +8,7 @@ import { CharacterCreationComponent } from './character-creation/character-creat
 import { ProfileComponent } from './profile/profile.component';
 import { InventoryComponent } from './inventory/inventory.component'; 
 import { LootboxComponent } from './lootbox/lootbox.component';
+import { QuestsComponent } from './quests/quests.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
   {path: 'inventory', component: InventoryComponent, canActivate: [authGuard]},
   {path: 'lootbox', component: LootboxComponent, canActivate: [authGuard]},
+  {path: 'quests', component: QuestsComponent, canActivate: [authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard' }
   

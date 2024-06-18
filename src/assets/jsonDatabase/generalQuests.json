@@ -1,0 +1,22 @@
+[
+  { "id": "gen_1", "name": "Nature Walk", "description": "Take a peaceful walk in nature to relax and rejuvenate.", "xp": 30, "time": 1 },
+  { "id": "gen_2", "name": "Reading Session", "description": "Read a book from your favorite genre to unwind and stimulate your mind.", "xp": 20, "time": 1 },
+  { "id": "gen_3", "name": "Gardening", "description": "Spend time gardening to connect with nature and nurture plants.", "xp": 30, "time": 1.5 },
+  { "id": "gen_4", "name": "Artistic Expression", "description": "Engage in a creative activity like drawing, painting, or crafting.", "xp": 25, "time": 1 },
+  { "id": "gen_5", "name": "Cooking Experiment", "description": "Try cooking a new recipe or dish to expand your culinary skills.", "xp": 25, "time": 1.5 },
+  { "id": "gen_6", "name": "Music Appreciation", "description": "Listen to music that inspires and uplifts you, exploring different genres.", "xp": 20, "time": 1 },
+  { "id": "gen_7", "name": "Yoga and Meditation", "description": "Practice yoga and meditation to relax your body and calm your mind.", "xp": 30, "time": 1 },
+  { "id": "gen_8", "name": "Volunteer Work", "description": "Donate your time to a local charity or community organization.", "xp": 40, "time": 2 },
+  { "id": "gen_9", "name": "Photography Expedition", "description": "Go on a photography adventure to capture beautiful moments and scenes.", "xp": 35, "time": 2 },
+  { "id": "gen_10", "name": "Home Spa Day", "description": "Treat yourself to a relaxing spa day at home with baths, facials, and pampering.", "xp": 35, "time": 2 },
+  { "id": "gen_11", "name": "Journaling", "description": "Reflect on your thoughts and experiences by writing in a journal.", "xp": 20, "time": 1 },
+  { "id": "gen_12", "name": "Stargazing", "description": "Spend an evening observing the stars and contemplating the universe.", "xp": 30, "time": 1.5 },
+  { "id": "gen_13", "name": "Movie Marathon", "description": "Enjoy a movie marathon with films from your favorite genre or series.", "xp": 25, "time": 2 },
+  { "id": "gen_14", "name": "Fitness Challenge", "description": "Complete a workout challenge or fitness routine to stay active and healthy.", "xp": 30, "time": 1 },
+  { "id": "gen_15", "name": "Board Game Night", "description": "Host a board game night with friends or family for fun and friendly competition.", "xp": 25, "time": 2 },
+  { "id": "gen_16", "name": "Visit a Museum or Art Gallery", "description": "Explore cultural exhibits and artworks to appreciate history and creativity.", "xp": 35, "time": 2 },
+  { "id": "gen_17", "name": "Virtual Travel Experience", "description": "Take a virtual tour of a city or landmark around the world.", "xp": 20, "time": 1.5 },
+  { "id": "gen_18", "name": "Baking Challenge", "description": "Challenge yourself with a baking project to create delicious treats.", "xp": 30, "time": 2 },
+  { "id": "gen_19", "name": "Podcast Listening Session", "description": "Listen to podcasts on topics that interest and inspire you.", "xp": 25, "time": 1 },
+  { "id": "gen_20", "name": "DIY Home Improvement Project", "description": "Embark on a DIY home improvement project to enhance your living space.", "xp": 35, "time": 2 }
+]

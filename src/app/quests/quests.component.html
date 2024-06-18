@@ -1,0 +1,22 @@
+<h3 class="subHeader">General Quests</h3>
+<div class="responsive-container">
+    <div class="content">
+        <div *ngFor="let quest of displayedGeneralQuests" class="item interactable" (click)="activateQuest(quest.id)">
+            <h4>{{ quest.name }}</h4>
+            <p>{{ quest.description }}</p>
+            <p>XP: {{ quest.xp }}</p>
+            <p>Time: {{ quest.time }}h</p>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="content">
+        <div *ngFor="let quest of displayedClassQuests" class="item interactable" (click)="activateQuest(quest.id)">
+            <h4>{{ quest.name }}</h4>
+            <p>{{ quest.description }}</p>
+            <p>XP: {{ quest.xp }}</p>
+            <p>Time: {{ quest.time }}h</p>
+        </div>
+    </div>
+</div>

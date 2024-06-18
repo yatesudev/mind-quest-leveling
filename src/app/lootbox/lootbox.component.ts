@@ -1,58 +1,67 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, HostListener, AfterViewInit } from '@angular/core';
 import * as THREE from 'three';
-import { FBXLoader } from '../../../node_modules/three/examples/jsm/loaders/FBXLoader.js';
 
 @Component({
   selector: 'app-lootbox',
   templateUrl: './lootbox.component.html',
   styleUrls: ['./lootbox.component.css']
 })
-export class LootboxComponent implements AfterViewInit {
-  @ViewChild('canvasBox', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+export class LootboxComponent  implements OnInit, AfterViewInit {
+  @ViewChild('rendererContainer', { static: true }) rendererContainer!: ElementRef;
 
-  constructor() {}
+  private renderer!: THREE.WebGLRenderer;
+  private scene!: THREE.Scene;
+  private camera!: THREE.PerspectiveCamera;
 
-  ngAfterViewInit(): void {
-    this.createScene();
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.initThreeJS();
+    this.animate();
   }
 
-  createScene(): void {
-    const canvas = this.canvasRef.nativeElement;
+  private initThreeJS() {
+    // Renderer
+    this.renderer = new THREE.WebGLRenderer({ alpha: true });
+    this.setRendererSize();
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
 
-    const scene = new THREE.Scene();
+    // Scene
+    this.scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 2, 5);
+    // Camera
+    this.camera = new THREE.PerspectiveCamera(75, this.rendererContainer.nativeElement.clientWidth / this.rendererContainer.nativeElement.clientHeight, 0.1, 1000);
+    this.camera.position.z = 5;
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
+    // Add an object (Cube)
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    this.scene.add(cube);
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.5);
-    pointLight.position.set(2, 2, 2);
-    scene.add(pointLight);
+    // Handle window resize
+    window.addEventListener('resize', this.onWindowResize.bind(this), false);
+  }
 
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
+  private setRendererSize() {
+    this.renderer.setSize(this.rendererContainer.nativeElement.clientWidth, this.rendererContainer.nativeElement.clientHeight);
+  }
 
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+  private animate() {
+    requestAnimationFrame(() => this.animate());
 
-    const fbxLoader = new FBXLoader();
-    fbxLoader.load('/assets/models/lootbox.fbx', (object) => {
-      scene.add(object);
-    }, undefined, (error) => {
-      console.error('An error happened while loading the FBX model.', error);
-    });
+    // Rotation for demo purposes
+    this.scene.children[0].rotation.x += 0.01;
+    this.scene.children[0].rotation.y += 0.01;
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    };
+    this.renderer.render(this.scene, this.camera);
+  }
 
-    animate();
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.camera.aspect = this.rendererContainer.nativeElement.clientWidth / this.rendererContainer.nativeElement.clientHeight;
+    this.camera.updateProjectionMatrix();
+    this.setRendererSize();
   }
 }

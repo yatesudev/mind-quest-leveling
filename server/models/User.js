@@ -18,9 +18,17 @@ const userSchema = new mongoose.Schema({
       rarity: { type: Number, required: true },
       quantity: { type: Number, default: 1 } // Make quantity optional with a default value
     }
-  ]
+  ],
+  activeQuest: {
+    id: { type: String },
+    name: { type: String },
+    description: { type: String },
+    xp: { type: Number },
+    startTime: { type: Date }, // Add startTime field
+    endTime: { type: Date },   // Add endTime field
+    status: { type: String, default: 'nil' }
+  }
 }, { collection: 'users' });
-
 
 // Hash the password before saving the user
 userSchema.pre('save', async function (next) {

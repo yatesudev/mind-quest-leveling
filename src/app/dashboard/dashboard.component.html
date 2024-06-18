@@ -23,22 +23,33 @@
         </a>
     </div>
 
+    <br>
+
     <div class="content">
         <div class="item">
-            Thats Your current Quest!
+            <h3>Current Quest: {{ currentQuest.name }}</h3>
+            <p>{{ currentQuest.description }}</p>
+            
+            <p>Time left: {{ currentQuest.timeLeft }} Min</p>
+
+            <div id="xpContainer">
+                <div class="xp-bar" [style.width.%]="currentQuest.progress"></div>
+            </div>
 
         </div>
     </div>
 
-    
-    <div class="content">
-        <div class="item">
-            Thats Your Quest List!
-        </div>
-    </div>
-
+    <br>
 
     <div class="content">
+        <a href="/quests">
+            <div class="item interactable">
+                <button>
+                    View Quest List
+                </button>
+            </div>
+        </a>
+
         <!-- DEVTOOL -->
         <div class="item interactable">
             <h2 class="epicTitle">Request Random Items!</h2>

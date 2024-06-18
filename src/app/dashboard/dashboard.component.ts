@@ -18,8 +18,19 @@ export class DashboardComponent implements OnInit {
       xp: 0
     }
   };
+
+  user: any;
+
   characterImage: string = '';
   xpPercentage: number = 0;
+
+  currentQuest: any = {
+    name: "",
+    description: "",
+    xp: "",
+    progress: 0,
+    timeLeft: 0
+  };
 
 
   constructor(
@@ -39,13 +50,52 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    this.characterService.getUserCharacter(userId).subscribe((response) => {
-      if (response.character) {
-        this.character = response.character;
-        this.characterImage = this.getCharacterImage(response.character.class);
-        this.calculateXpPercentage(response.character.stats.xp);
+    this.characterService.getUser(userId).subscribe((response) => {
+      if (response.user) {
+        this.character = response.user.character;
+        this.user = response.user;
+        this.updateCurrentQuest(this.user.activeQuest)
+        this.calculateXpPercentage(this.character.stats.xp);
       }
     });
+  }
+
+  updateCurrentQuest(quest: any) {
+    if (!quest) {
+      return;
+    }
+
+    this.currentQuest = {
+      name: quest.name,
+      description: quest.description,
+      xp: quest.xp,
+      progress: this.calculateQuestProgress(quest.startTime, quest.endTime),
+      timeLeft: this.calculateTimeLeft(quest.startTime, quest.endTime)
+    };
+
+    console.log(this.currentQuest.progress);
+
+  }
+
+  calculateTimeLeft(startTime: Date, endTime: Date): number {
+    const now = new Date();
+    const end = new Date(endTime);
+
+    let time = ((end.getTime() - now.getTime()) / 1000 / 60);
+    /* round time */ 
+    time = Math.floor(time+0.99);
+    return time;
+  }
+
+  calculateQuestProgress(startTime: Date, endTime: Date): number {
+    const now = new Date();
+    const start = new Date(startTime);
+    const end = new Date(endTime);
+
+    const totalDuration = end.getTime() - start.getTime();
+    const elapsedDuration = now.getTime() - start.getTime();
+
+    return (elapsedDuration / totalDuration) * 100;
   }
 
   getCharacterImage(characterClass: string): string {

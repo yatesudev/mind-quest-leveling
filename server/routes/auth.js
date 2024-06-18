@@ -119,6 +119,19 @@ router.get('/get-character/:userId', async (req, res) => {
   }
 });
 
+// Check if user has a character route
+router.get('/get-user/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ user: user });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Get user inventory
 router.get('/inventory/:userId', async (req, res) => {
   try {
@@ -221,7 +234,64 @@ router.post('/inventory/:userId/add-item', async (req, res) => {
 });
 
 
-//add PlayerItem with rarity
+router.post('/activate-quest', async (req, res) => {
+  const { userId, quest } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if the user already has an active quest
+    if (user.activeQuest) {
+      if (user.activeQuest.status === 'active') {
+        return res.status(400).json({ message: 'User already has an active quest' });
+      }
+    }
+
+    console.log("manage to activate!");
+
+    const now = new Date();
+    const timeDuration = quest.time
+    const endTime = new Date(now.getTime() + timeDuration * 60 * 60 * 1000);
+
+    // Set the user's active quest
+    user.activeQuest = {
+      id: quest.id,
+      name: quest.name,
+      description: quest.description,
+      xp: quest.xp,
+      startTime: now,
+      endTime: endTime,
+      status: 'active'
+    };
+
+    await user.save();
+
+    res.status(200).json({ message: 'Quest activated successfully', user });
+  } catch (error) {
+    console.error('Error activating quest:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+
+router.get('/get-user-quests/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const activeQuests = user.activeQuest; // Adjust according to your schema
+
+    res.status(200).json(activeQuests);
+  } catch (error) {
+    console.error('Error retrieving user quests:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
 
 
 module.exports = router;

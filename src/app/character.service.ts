@@ -8,8 +8,7 @@ import { environment } from './environment';
   providedIn: 'root',
 })
 export class CharacterService {
-    //private apiUrl = 'http://localhost:3000/auth';
-    private apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -23,5 +22,17 @@ export class CharacterService {
 
   getUserCharacter(userId: string): Observable<{ character: any }> {
     return this.http.get<{ character: any }>(`${this.apiUrl}/get-character/${userId}`);
+  }
+
+  getUser(userId: string): Observable<{ user: any }> {
+    return this.http.get<{ user: any }>(`${this.apiUrl}/get-user/${userId}`);
+  }
+
+  activateQuest(userId: string, quest: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/activate-quest`, { userId, quest });
+  }
+
+  getUserQuests(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/get-user-quests/${userId}`);
   }
 }
