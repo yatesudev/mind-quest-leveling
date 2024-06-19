@@ -1,6 +1,6 @@
+<h3 class="subHeader">Character Creation</h3>
 <div class="responsive-container">
   <div class="item" *ngIf="!assignedClass; else congratsTemplate">
-    <h2>Character Creation</h2>
     <p>{{ questions[currentQuestionIndex].text }}</p>
     <div class="background">
       <div *ngFor="let option of questions[currentQuestionIndex].options">
@@ -9,15 +9,17 @@
     </div>
   </div>
   
-  <div class="item">
     <ng-template #congratsTemplate>
-      <div class="item" class="congratulation-container">
-        <h2>Congratulations!</h2>
-        <p>You are now a {{ assignedClass }}.</p>
-        <img [src]="getCharacterImage()" alt="{{ assignedClass }} image">
+      <div class="content congrats">
+          <h3 class="subHeader congratsText">Congratulations</h3>
+          <p>You are now a {{ assignedClass }}.</p>
+          <div class="displayFront">
+            <img class="class-image {{ assignedClass }}" alt="{{ assignedClass }} image">
+            <br>
+            <a href="/dashboard"><div><button>Go to Dashboard</button></div></a>
+          </div>
       </div>
     </ng-template>
-  </div>
 </div>
 
 
