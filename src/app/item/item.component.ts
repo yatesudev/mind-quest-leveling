@@ -1,5 +1,4 @@
-// three-scene.component.ts
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ItemService } from '../item.service';
@@ -7,9 +6,9 @@ import { ItemService } from '../item.service';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrl: './item.component.css'
+  styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements AfterViewInit  {
+export class ItemComponent implements AfterViewInit {
   @ViewChild('canvas') private canvasRef!: ElementRef;
 
   // Three.js variables
@@ -27,8 +26,7 @@ export class ItemComponent implements AfterViewInit  {
     this.initThreeJS();
   }
 
-   private initThreeJS(): void {
-
+  private initThreeJS(): void {
     console.log("item rarity ", this.itemService.getSelectedItem().rarityType);
 
     // Create the scene
@@ -43,9 +41,6 @@ export class ItemComponent implements AfterViewInit  {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.canvasRef.nativeElement.appendChild(this.renderer.domElement);
 
-    // Set the background color of the scene
-    const backgroundColor = 0x0f1d4b; // The color used in your materials
-
     // Initialize OrbitControls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableZoom = false; 
@@ -58,45 +53,18 @@ export class ItemComponent implements AfterViewInit  {
 
     // Load the texture
     const textureLoader = new THREE.TextureLoader();
-    //console.log("texture to load: ", `assets/images/items/${this.itemService.getSelectedItem().name}.png`);
     textureLoader.load(
       `assets/img/items/${this.itemService.getSelectedItem().name}.png`,
       (texture) => {
-        const geometry = new THREE.BoxGeometry(2, 1, 0.1);
+        const geometry = new THREE.PlaneGeometry(2, 1);
 
-          // Create a canvas to draw the background color and the texture
-          const canvas = document.createElement('canvas');
-          canvas.width = texture.image.width;
-          canvas.height = texture.image.height;
-
-          const context = canvas.getContext('2d');
-          if (context) {
-            // Fill the canvas with the background color
-            context.fillStyle = `#${backgroundColor.toString(16)}`;
-            context.fillRect(0, 0, canvas.width, canvas.height);
-  
-            // Draw the texture on top of the background color
-            context.drawImage(texture.image, 0, 0);
-          }
-  
-          // Create a new texture from the canvas
-          const combinedTexture = new THREE.CanvasTexture(canvas);
-  
-          const materials = [
-            new THREE.MeshBasicMaterial({ color: backgroundColor }), // Right side
-            new THREE.MeshBasicMaterial({ color: backgroundColor }), // Left side
-            new THREE.MeshBasicMaterial({ color: backgroundColor }), // Top side
-            new THREE.MeshBasicMaterial({ color: backgroundColor }), // Bottom side
-            new THREE.MeshBasicMaterial({ map: combinedTexture }),   // Front side
-            new THREE.MeshBasicMaterial({ map: combinedTexture })    // Back side
-          ];
-
-        this.mesh = new THREE.Mesh(geometry, materials);
+        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide });
+        
+        this.mesh = new THREE.Mesh(geometry, material);
         this.scene.add(this.mesh);
 
-        this.scene.position.y = 1;
-
-        this.scene.scale.set(0.6, 1.2, 1.2);
+        this.mesh.position.y = 1;
+        this.mesh.scale.set(0.6, 1.2, 1.2);
 
         // Render the scene
         this.animate();
@@ -110,11 +78,6 @@ export class ItemComponent implements AfterViewInit  {
 
   private animate = () => {
     requestAnimationFrame(this.animate);
-
-    // if (this.mesh) {
-    //   // Rotate the mesh slowly around the Y-axis
-    //   this.mesh.rotation.y += 0.01; // Adjust this value for desired speed
-    // }
 
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
