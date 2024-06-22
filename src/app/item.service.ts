@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 })
 export class ItemService {
   private apiUrl = environment.apiUrl;
+  private selectedItem: any;
 
   private itemList = [
     { "id": 0, "name": "Alune", "description": "An angelic furball who creates chaos but is oddly terrified of Max. Who is Max?"},
@@ -91,5 +92,14 @@ export class ItemService {
   //add PlayerItem with rarity
   addItemToInventory(userId: string, itemId: number, rarity: number): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/inventory/${userId}/add-item`, { itemId, rarity });
-  }  
+  } 
+  
+  setSelectedItem(item: any): void {
+    this.selectedItem = item;
+    console.log('Item selected:', this.selectedItem );  
+  }
+
+  getSelectedItem(): any {
+    return this.selectedItem;
+  }
 }

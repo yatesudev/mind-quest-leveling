@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemService } from '../item.service';
 import { Item, InventoryItem } from '../item.model';
 import { AuthService } from '../auth.service';
@@ -13,7 +14,7 @@ export class InventoryComponent implements OnInit {
   inventory: InventoryItem[] = [];
   isDataLoaded: boolean = false; // Flag to track if both items and inventory are loaded
 
-  constructor(private itemService: ItemService, private authService: AuthService) {}
+  constructor(private itemService: ItemService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.loadItems();
@@ -66,5 +67,11 @@ export class InventoryComponent implements OnInit {
   getItemImage(itemId: number): string {
     const item = this.getItemDetails(itemId);
     return item ? `assets/images/items/${item.name}.png` : '';
+  }
+
+  onItemClicked(item: any): void {
+    const itemName = this.getItemDetails(item.itemId);
+    this.itemService.setSelectedItem(itemName);
+    this.router.navigate(['/itemview']);
   }
 }

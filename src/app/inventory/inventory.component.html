@@ -1,9 +1,9 @@
-<h3 class="subHeader">Profile</h3>
+<h3 class="subHeader">Inventory</h3>
 <div class="responsive-container">
   <div class="content">
     <div *ngIf="isDataLoaded">
       <div class="inventory-container">
-        <div class="inventory-item rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory">
+        <div class="inventory-item rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory" (click)="onItemClicked(invItem)">
           <div class="item">
             <div class="item-image {{getItemDetails(invItem.itemId)?.name}}"></div>
 
