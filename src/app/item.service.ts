@@ -102,4 +102,16 @@ export class ItemService {
   getSelectedItem(): any {
     return this.selectedItem;
   }
+
+  setSelectedItemRarity(rarity: any): void {
+    this.selectedItem.rarity = rarity;
+  }
+
+  getSelectedItemRarity(): any {
+    return this.selectedItem.rarity;
+  }
+
+  rarityTypeIdtoRarityName(rarityTypeId: number): string {
+    return this.rarityList.find(rarity => rarity.id === rarityTypeId)?.name || 'Unknown';
+  }
 }

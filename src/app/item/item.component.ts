@@ -19,6 +19,7 @@ export class ItemComponent implements AfterViewInit {
   private controls!: OrbitControls;
 
   public itemName: string = this.itemService.getSelectedItem().name;
+  public itemRarity: string = this.itemService.rarityTypeIdtoRarityName(this.itemService.getSelectedItemRarity());
 
   constructor(private itemService: ItemService) {}
 
@@ -27,7 +28,6 @@ export class ItemComponent implements AfterViewInit {
   }
 
   private initThreeJS(): void {
-    console.log("item rarity ", this.itemService.getSelectedItem().rarityType);
 
     // Create the scene
     this.scene = new THREE.Scene();

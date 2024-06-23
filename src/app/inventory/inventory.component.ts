@@ -72,6 +72,7 @@ export class InventoryComponent implements OnInit {
   onItemClicked(item: any): void {
     const itemName = this.getItemDetails(item.itemId);
     this.itemService.setSelectedItem(itemName);
+    this.itemService.setSelectedItemRarity(item.rarity);
     this.router.navigate(['/itemview']);
   }
 }

@@ -9,6 +9,11 @@ import {
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { ItemService } from '../item.service';
+import { map } from 'rxjs';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { Item } from '../item.model';
 
 @Component({
   selector: 'app-lootbox',
@@ -26,7 +31,16 @@ export class LootboxComponent implements OnInit, AfterViewInit {
   private controls!: OrbitControls;
   private model!: THREE.Group;
 
-  ngOnInit() {}
+  private itemList: Item[] = [];
+
+  constructor(private itemService: ItemService, private authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.itemService.getItems().subscribe((data) => {
+      this.itemList = data;
+      console.log('Item list:', this.itemList);
+    });
+  }
 
   ngAfterViewInit() {
     this.initThreeJS();
@@ -131,10 +145,37 @@ export class LootboxComponent implements OnInit, AfterViewInit {
       // Add event listener to re-enable controls when animation finishes
       this.mixer.addEventListener('finished', () => {
         this.controls.enabled = true;
+        this.openLootbox();
       });
     } else {
       console.error('Cannot play animation: No animations found or mixer not initialized.');
     }
+  }
+
+  public openLootbox() {
+    const randomItemId = this.itemService.getRandomItemId();
+    const randomRarity = this.itemService.getRandomRarity();
+
+    const userId = this.authService.getUserId();
+
+    if (!userId) {
+      return;
+    }
+
+    console.log("Rarity: ", randomRarity);
+
+    this.itemService.addItemToInventory(userId, randomItemId, randomRarity).subscribe(
+      () => {
+        console.log('Item added to inventory aaaaa:', randomItemId);
+        this.itemService.setSelectedItem(this.itemList[randomItemId]);
+        this.itemService.setSelectedItemRarity(randomRarity);
+        this.router.navigate(['/itemview']);
+        console.log('Random item added to inventory successfully: ', randomItemId, randomRarity);
+      },
+      (error) => {
+        console.error('Failed to add random item to inventory', error);
+      }
+    );
   }
 
   private animate() {
