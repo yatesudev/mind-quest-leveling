@@ -50,10 +50,11 @@ export class LootboxComponent implements OnInit, AfterViewInit {
 
     // Controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.25;
+    this.controls.enableRotate = true;
     this.controls.enableZoom = false; 
     this.controls.enablePan = false;
+
+    this.controls.rotateSpeed = 0.5;
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
@@ -117,12 +118,20 @@ export class LootboxComponent implements OnInit, AfterViewInit {
       console.log("play animation");
 
       this.mixer.stopAllAction();
-      this.controls.enableDamping = true;
 
       const action = this.mixer.clipAction(this.model['animations'][1]);
       action.setLoop(THREE.LoopOnce, 1);
       action.clampWhenFinished = true;
+
+      // Disable controls when animation starts
+      this.controls.enabled = false;
+
       action.play();
+
+      // Add event listener to re-enable controls when animation finishes
+      this.mixer.addEventListener('finished', () => {
+        this.controls.enabled = true;
+      });
     } else {
       console.error('Cannot play animation: No animations found or mixer not initialized.');
     }
