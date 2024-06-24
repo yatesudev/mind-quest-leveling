@@ -5,12 +5,12 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
-    z-index: 100;
+    z-index: 300;
 }
 
 
 a {
- z-index: 100;
+ z-index: 300;
 }
 
 ul {

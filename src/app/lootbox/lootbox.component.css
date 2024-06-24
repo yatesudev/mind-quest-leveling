@@ -1,25 +1,60 @@
 .outer-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 60vh;
-    position: relative;
-  }
-  
-  .renderer-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    filter: drop-shadow(0px 0px 10px rgba(255, 217, 0, 0.822));
-    animation: shadowColorChange 5s infinite;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60vh;
+  position: relative;
+}
+
+.renderer-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  filter: drop-shadow(0px 0px 10px rgba(255, 217, 0, 0.822));
+  animation: shadowColorChange 5s infinite;
+  position: relative;
+}
 
 .item {
-    background-color: rgb(249, 229, 226);
-    border-radius: 20px;
-    padding: 20px;
-    transition: all 0.3s;
-    text-align: center;
-    box-shadow: 0px 5px 4px#00000046;
+  background-color: rgb(249, 229, 226);
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s;
+  text-align: center;
+  box-shadow: 0px 5px 4px #00000046;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chest-btn {
+  bottom: 0; 
+  position: absolute;
+  filter: none !important; /* Override the inherited filter */
+  animation: none !important; /* Override the inherited animation */
+}
+
+/* Specifically target .chest-btn within .renderer-container to override */
+.renderer-container .chest-btn {
+  filter: none !important;
+  animation: none !important;
+}
+
+/* Reset button-specific styles to override any inheritance */
+.renderer-container .chest-btn {
+  filter: none;
+  animation: none;
+}
+
+/* Apply higher specificity using CSS variables */
+#rendererContainer > .chest-btn {
+  --chest-btn-animation: none;
+  --chest-btn-filter: none;
+  animation: var(--chest-btn-animation) !important;
+  filter: var(--chest-btn-filter) !important;
 }

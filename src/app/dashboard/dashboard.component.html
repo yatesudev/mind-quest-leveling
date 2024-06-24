@@ -6,7 +6,7 @@
         <div class="item">
             <h2>Hello Champion!</h2>
             <p>Welcome to the dashboard. Here you can see your character's information cards.</p>
-            
+
             <p>Those that are interactable, will have a hover effect.</p>
         </div>
 
@@ -14,7 +14,9 @@
             <div class="item interactable">
                 <h2 class="epicTitle">Character Profile</h2>
                 <div class="class-image {{character.class}}"></div>
-                <div><p id="class">{{ character.class }}</p></div>
+                <div>
+                    <p id="class">{{ character.class }}</p>
+                </div>
                 <div id="xpContainer">
                     <div class="xp-bar" [style.width.%]="xpPercentage"></div>
                     <p>Level: {{ character.level }}</p>
@@ -25,23 +27,18 @@
 
     <br>
 
-    <div class="content">
+    <div class="content quest-container">
         <div class="item">
             <h3>Current Quest: {{ currentQuest.name }}</h3>
             <p>{{ currentQuest.description }}</p>
-            
+
             <p>Time left: {{ currentQuest.timeLeft }} Min</p>
 
             <div id="xpContainer">
                 <div class="xp-bar" [style.width.%]="currentQuest.progress"></div>
             </div>
-
         </div>
-    </div>
-
-    <br>
-
-    <div class="content">
+        <br>
         <a href="/quests">
             <div class="item interactable">
                 <button>
@@ -49,25 +46,39 @@
                 </button>
             </div>
         </a>
+    </div>
 
-        <!-- DEVTOOL -->
-        <div class="item interactable">
-            <h2 class="epicTitle">Request Random Items!</h2>
-            <button (click)="requestRandomItems()">Press Me!</button>
-        </div>
-        
-        <!-- DEVTOOL -->
+    <br>
+
+    <div class="content">
+        <a href="/inventory">
+            <div class="item interactable">
+                <button>
+                    Inventory
+                </button>
+            </div>
+        </a>
+
         <a href="/lootbox">
             <div class="item interactable">
-                <h2 class="epicTitle">Lootbox Testing</h2>
+                <h2 class="epicTitle">
+                    Adventure Chest
+                </h2>
+                <img class="chest-img" src="assets/img/chest.png" alt="Chest">
             </div>
         </a>
+    </div>
 
-        <!-- DEVTOOL -->
-        <a href="/itemview">
-            <div class="item interactable">
-                <h2 class="epicTitle">Item View Testing</h2>
-            </div>
-        </a>
+    <!-- DEVTOOL -->
+    <!-- <div class="item interactable">
+            <h2 class="epicTitle">Request Random Items!</h2>
+            <button (click)="requestRandomItems()">Press Me!</button>
+        </div> -->
+
+
+    <br>
+
+    <div>
+
     </div>
 </div>

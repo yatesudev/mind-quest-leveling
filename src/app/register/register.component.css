@@ -73,3 +73,9 @@ button {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+.link-wrapper {
+    text-align: center;
+    padding-top: 10px;
+    font-size: large;
+}

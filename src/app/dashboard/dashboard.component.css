@@ -59,6 +59,7 @@
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
     animation: colorChange 25s infinite;
     margin-bottom: 5px;
+    padding-bottom: 15px;
 }
 
 @keyframes colorChange {
@@ -99,4 +100,15 @@ a {
   font-size: 150%;
   padding: 0;
   margin: 0;
+}
+
+.quest-container {
+  /*display in column*/
+  display: flex;
+  flex-direction: column;
+}
+
+.chest-img {
+  width: 100px;
+  height: 100px;
 }

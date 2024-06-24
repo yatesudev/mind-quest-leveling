@@ -15,7 +15,9 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" ngModel required>
           </div>
-          <a href="/register">Register</a>
+          <div class="link-wrapper">
+            <a href="/register">Don't have an Account?</a>
+          </div>
           <button type="submit" [disabled]="loginForm.form.invalid || loginForm.form.pristine">Login</button>
         </form>
       </div>
