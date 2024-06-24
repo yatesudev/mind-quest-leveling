@@ -44,12 +44,7 @@ select {
     margin-bottom: 5%;
   }
 
-  .mbti-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .mbti-wrapper a{
+  .personalityLink{
+    display: block;
+    padding-bottom: 30px;
   }

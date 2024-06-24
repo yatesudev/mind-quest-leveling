@@ -63,7 +63,7 @@ export class ItemComponent implements AfterViewInit {
         this.mesh = new THREE.Mesh(geometry, material);
         this.scene.add(this.mesh);
 
-        this.mesh.position.y = 1;
+        this.mesh.position.y = 1.5;
         this.mesh.scale.set(0.6, 1.2, 1.2);
 
         // Render the scene
