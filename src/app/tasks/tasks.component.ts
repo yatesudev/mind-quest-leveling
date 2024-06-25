@@ -13,11 +13,17 @@ export class TasksComponent {
 
   websitesEnrichment = [
     { name: 'Trolley Problems', url: 'https://neal.fun/absurd-trolley-problems/' },
+    { name: 'Breath Excercise', url: 'https://mindfuldevmag.com/breathing-timer/' },
+    { name: 'Meditation Timer', url: 'https://mindfuldevmag.com/meditation-timer/'},
     { name: 'Draw Perfect Circle', url: 'https://neal.fun/perfect-circle/' },
-    { name: 'Dark Patterns', url: 'https://neal.fun/dark-patterns/' },
   ];
 
   websitesEducation = [
+    { name: 'Dark Patterns', url: 'https://neal.fun/dark-patterns/' },
+    { name: 'The Deep Sea', url: 'https://neal.fun/deep-sea/' },
+    { name: 'The Size of Space', url: 'https://neal.fun/size-of-space/'},
+    { name: 'Future of Universe', url: 'https://neal.fun/universe-forecast/' },
+    { name: 'Life stats', url: 'https://neal.fun/life-stats/' },
   ];
 
   websitesGames = [
