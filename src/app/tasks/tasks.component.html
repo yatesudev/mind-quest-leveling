@@ -11,7 +11,15 @@
     <br>
 
     <div class="content">
-        <div class="item"><h3 class="subHeader">Enrichment Apps</h3></div>
+        <div class="item">
+            <p>Tasks are meant to be used on the desktop version. You can still use them on mobile, but functionality may be limited.</p>
+        </div>
+    </div> 
+
+    <br>
+
+    <div class="content">
+        <div class="item"><h3 class="subHeader">Enrichment</h3></div>
         <div class="item" *ngFor="let website of websitesEnrichment">
             <button (click)="loadWebsite(website.url)">{{ website.name }}</button>
         </div>
@@ -19,7 +27,7 @@
     
     <br>
     <div class="content">
-        <div class="item"><h3 class="subHeader">Educational Apps</h3></div>
+        <div class="item"><h3 class="subHeader">Educational</h3></div>
         <div class="item" *ngFor="let website of websitesEducation">
             <button (click)="loadWebsite(website.url)">{{ website.name }}</button>
         </div>

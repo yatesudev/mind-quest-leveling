@@ -1,0 +1,60 @@
+.navbar {
+    max-width: 100%;
+    margin: auto;
+}
+
+.content {
+    border-radius: 15px;
+    padding: 40px;
+    background:rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.219);
+
+}
+
+.item {
+    background-color: rgb(249, 229, 226);
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.3s;
+    text-align: center;
+    border: 3px solid rgba(0, 0, 0, 0);
+    box-shadow: 0px 5px 4px#00000046;
+}
+
+
+.class-image {
+
+    border-radius: 50%;
+    border: 5px solid black;
+    aspect-ratio: 1/1;
+    width: 200px;
+    height: 200px;
+
+    transition: all 0.3s;
+}
+
+.logo-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    padding: 0;
+    animation: shadowColorChange 5s infinite;
+    transition: all 0.3s;
+}
+
+.logo-image:hover {
+   scale: 1.2;
+    z-index: 1000
+}
+
+.class-image:hover {
+    scale: 1.2;
+    z-index: 1000;
+}
+
+.inline-block {
+    margin-bottom: 10px;
+}

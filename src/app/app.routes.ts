@@ -11,8 +11,10 @@ import { LootboxComponent } from './lootbox/lootbox.component';
 import { QuestsComponent } from './quests/quests.component';
 import { ItemComponent } from './item/item.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 const routes: Routes = [
+  { path: 'landingpage', component: LandingpageComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},

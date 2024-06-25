@@ -20,6 +20,15 @@
 
 }
 
+.logoutButton {
+    min-width: 40vw;
+}
+
+.username {
+    font-size: 1.5em;
+
+}
+
 select {
     -webkit-padding-end: 20px;
     -moz-padding-end: 20px;

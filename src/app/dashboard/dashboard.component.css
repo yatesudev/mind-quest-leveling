@@ -49,32 +49,6 @@
     max-width: fit-content;
 }
 
-.epicTitle {
-    color: rgb(243, 57, 57);
-    /* outline black on text with shadow*/
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
-    animation: colorChange 25s infinite;
-    margin-bottom: 5px;
-    padding-bottom: 15px;
-}
-
-@keyframes colorChange {
-    0% {
-      color: rgb(191, 221, 249);
-    }
-    25% {
-      color: rgb(191, 249, 191);
-    }
-    50% {
-      color: rgb(249, 191, 230);
-    }
-    75% {
-      color: rgb(245, 249, 191);
-    }
-    100% {
-      color: rgb(217, 191, 249);
-    }
-  }
 
 
 /* unlink a */
@@ -107,6 +81,10 @@ a {
 .chest-img {
   width: 100px;
   height: 100px;
+}
+
+.scale-img {
+  scale: 1.2;
 }
 
 #xpContainer {

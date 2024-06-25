@@ -20,11 +20,14 @@ export class FooterComponent {
         }
       });
     }
+
+    disallowedRoutes = [
+      '/character-creation',
+      '/landingpage',
+    ];
   
     checkCurrentRoute() {
       const currentRoute = this.router.url;
-      console.log('Current route:', currentRoute);
-      this.showFooter = !['/character-creation'].includes(currentRoute);
-      console.log('Show footer:', this.showFooter);
+      this.showFooter = !this.disallowedRoutes.includes(currentRoute);
     }
 }

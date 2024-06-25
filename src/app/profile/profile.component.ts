@@ -19,6 +19,8 @@ export class ProfileComponent implements OnInit{
   character: any;
   aviableClasses: any;
 
+  username: string = "";
+
   personality: any;
   newChangedClass: any;
   newChangedPersonality: String = "";
@@ -60,6 +62,7 @@ export class ProfileComponent implements OnInit{
     this.characterService.getUser(userId).subscribe((response) => {
       if (response.user) {
         console.log('User:', response.user.personalityType);
+        this.username = response.user.username;
         this.personality = response.user.personalityType;
 
       }

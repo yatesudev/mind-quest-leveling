@@ -227,6 +227,42 @@ input[type="password"]:focus {
     width: 100%;
 }
 
+.inline-block div {
+    flex: 1 1 auto; /* This makes each item flexible and allows it to grow/shrink */
+    min-width: 100px; /* Set a minimum width for each item */
+    margin: 5px; /* Add some margin for spacing between items */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    margin: auto;
+    max-width: fit-content;
+}
+
+.epicTitle {
+    color: rgb(243, 57, 57);
+    /* outline black on text with shadow*/
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    animation: colorChange 25s infinite;
+    margin-bottom: 5px;
+    padding-bottom: 15px;
+}
+
+@keyframes colorChange {
+    0% {
+      color: rgb(191, 221, 249);
+    }
+    25% {
+      color: rgb(191, 249, 191);
+    }
+    50% {
+      color: rgb(249, 191, 230);
+    }
+    75% {
+      color: rgb(245, 249, 191);
+    }
+    100% {
+      color: rgb(217, 191, 249);
+    }
+  }
+
 /* Pixel Art Button Styling */
 button {
     display: inline-block;
@@ -241,8 +277,26 @@ button {
     border-radius: 10px;
     font-family: 'VeniceClassic', sans-serif;
 
+    background: linear-gradient(45deg, #ffcccc, #ffccff, #ccccff, #ccffff, #ccffcc, #ffffcc, #ffcc99, #ffcccc);
+    background-size: 200% 200%;
+    animation: rainbow 5s linear infinite;
+
     font-size: 2rem;
+    
+
   }
+
+  @keyframes rainbow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
   
   button:hover {
     scale: 1.1;
@@ -272,6 +326,15 @@ button {
     background-repeat: no-repeat;   
 }
 
+
+a {
+    /* Disable underline */
+    text-decoration: none;
+}
+
+.underline {
+    text-decoration: underline;
+}
 
 
 
@@ -333,6 +396,12 @@ button {
     animation: shadowColorChange 5s infinite;
 }
 
+.navbarItem {
+    min-width: 20vw;
+    display: block;
+    margin: auto;
+}
+
 
 .mage {
     background-image: url('./assets/img/avatars/Mage.png');
@@ -352,6 +421,10 @@ button {
 
 .healer {
     background-image: url('./assets/img/avatars/Healer.png');
+}
+
+.logo {
+    background-image: url('./assets/img/icons/logo.png');
 }
 
 

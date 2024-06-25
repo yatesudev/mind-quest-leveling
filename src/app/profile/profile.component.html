@@ -3,6 +3,9 @@
     <div class="content">
         <div class="item">
             <h2>Profile Component</h2>
+
+            <p>Welcome to your profile page, <span class="epicTitle username">{{username}}</span>!</p>
+            
             <p>Here you can see your Basic information, but also have the ability to change your class.</p>
             
             <p>We are all free to take changes!</p>
@@ -36,10 +39,6 @@
     <br>
 
     <div class="content">
-        <div (click)="logout()" class="item interactable full-width">
-            <button><p>Logout</p></button>
-        </div>
-
         <div class="item">
             <h2>Select Your Personality Type</h2>
             <p>Choose your personality type to see how it affects your character.</p>
@@ -64,9 +63,14 @@
             <option value="ENFJ">ENFJ</option>
             <option value="ENTJ">ENTJ</option>
             </select>
-            <a class="personalityLink" href="https://www.16personalities.com/free-personality-test" target="_blank" rel="noopener noreferrer">Find Out Your Personality Type!</a>
+            <a class="personalityLink underline" href="https://www.16personalities.com/free-personality-test" target="_blank" rel="noopener noreferrer">Find Out Your Personality Type!</a>
             <button (click)="changePersonality(personalityType.value)" >Accept</button>
         </div>
+
+        <div (click)="logout()" class="item interactable full-width">
+            <button class="logoutButton"><p>Logout</p></button>
+        </div>
+
     </div>
 
 
