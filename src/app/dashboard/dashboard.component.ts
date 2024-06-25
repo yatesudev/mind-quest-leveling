@@ -3,6 +3,7 @@ import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
 import { ItemService } from '../item.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,7 +40,8 @@ export class DashboardComponent implements OnInit {
     private characterService: CharacterService,
     private authService: AuthService,
     private itemService: ItemService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -66,7 +68,10 @@ export class DashboardComponent implements OnInit {
         requestAnimationFrame(animate);
       } else {
         if (this.currentQuest.progress) {
-          window.location.reload(); // Refresh the page to update the character panel
+          this.toastr.success('Quest completed');
+          setTimeout(() => {
+            window.location.reload(); // Refresh the page to update the character panel
+          }, 2000);
         }
       }
     };

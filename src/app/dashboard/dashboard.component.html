@@ -55,7 +55,17 @@
 
     <br>
 
-    <div #questComponent class="content quest-container">
+
+
+    <div #questComponent class="content quest-container">   
+        <a href="/quests">
+            <div class="item">
+                <button class="interactable">
+                    View Quest List
+                </button>
+            </div>
+        </a>
+        
         <div class="item">
             <div *ngIf="(currentQuest.timeLeft > 0) ;else noQuestNotify">
             <h3>Current Quest: {{ currentQuest.name }}</h3>
@@ -67,10 +77,16 @@
               </div>
             </div>
             
+            <div class="cancelQuest"> 
+                <button >Cancel Quest</button>
+            </div>
+
             <ng-template #noQuestNotify>
                 <p>No active Quest</p>
             </ng-template>
         </div>
+
+
 
         <div *ngIf="lootboxes > 0" class="item">
             <div>
@@ -80,13 +96,7 @@
                 </div>
         </div>
 
-        <a href="/quests">
-            <div class="item interactable">
-                <button>
-                    View Quest List
-                </button>
-            </div>
-        </a>
+        <br>
     </div>
 
     <div>

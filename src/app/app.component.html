@@ -1,7 +1,9 @@
-<div class="generalWrapper">
-<h1 class="mqlHeader">MindQuestLeveling</h1>
-<router-outlet></router-outlet>
-</div>
-<div *ngIf="showFooter">
+
+<div #body [class.monochrome]="isSpecialEvent" class="generalWrapper">
+    <h1 class="mqlHeader">MindQuestLeveling</h1>
+    <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="showFooter">
     <app-footer></app-footer>
 </div>
+  

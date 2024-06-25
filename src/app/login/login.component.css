@@ -78,3 +78,7 @@ button {
     padding-top: 10px;
     font-size: large;
 }
+
+.custom-link{
+    font-size: 25px !important;
+}

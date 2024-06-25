@@ -16,15 +16,6 @@
     box-shadow: 0px 5px 4px#00000046;
 }
 
-.interactable:hover {
-    /* drop shadow */
-    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.819);
-    border: 3px solid rgb(0, 0, 0);
-    z-index: 10;
-    scale: 1.1;
-    position: relative;
-}
-
 #xpContainer {
     margin-top: 10px;
     width: 100%;
@@ -49,7 +40,14 @@
     max-width: fit-content;
 }
 
-
+.interactable:hover {
+  /* drop shadow */
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.819);
+  border: 3px solid rgb(0, 0, 0);
+  z-index: 10;
+  scale: 1.1;
+  position: relative;
+}
 
 /* unlink a */
 a {
@@ -100,4 +98,8 @@ a {
   background-color: #76c7c0;
   width: 0;
   transition: width 0.2s ease-in-out; /* Smooth animation */
+}
+
+.cancelQuest{
+  padding-top: 20px;
 }

@@ -1,1 +1,9 @@
- 
+/* app.component.css */
+.generalWrapper {
+    transition: filter 1s ease-in-out, background-color 1s ease-in-out;
+  }
+  
+  .monochrome {
+    filter: grayscale(100%) !important;
+  }
+  

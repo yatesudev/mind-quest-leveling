@@ -1,11 +1,8 @@
-
-
-
 <div class="responsive-container">
 
   <div class="content">
       <div class="item">
-        <h2>Login</h2>
+        <h2> Login</h2>
         <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
           <div class="border-box">
             <label for="email">Email</label>
@@ -16,7 +13,7 @@
             <input type="password" id="password" name="password" ngModel required>
           </div>
           <div class="link-wrapper">
-            <a href="/register">Don't have an Account?</a>
+            <a class="custom-link" href="/register">Don't have an Account?</a>
           </div>
           <button type="submit" [disabled]="loginForm.form.invalid || loginForm.form.pristine">Login</button>
         </form>

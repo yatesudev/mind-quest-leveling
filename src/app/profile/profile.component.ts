@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
+import { AppComponent } from '../app.component';
+
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -27,11 +29,14 @@ export class ProfileComponent implements OnInit{
 
   powerText: string = "";
 
+  userLevel = 0;
+
   constructor(
     private characterService: CharacterService,
     private authService: AuthService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private appComponent: AppComponent
   ) {}
 
   ngOnInit() {
@@ -41,7 +46,7 @@ export class ProfileComponent implements OnInit{
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/landingpage']);
   }
 
   setProfilePanel() {
@@ -61,10 +66,9 @@ export class ProfileComponent implements OnInit{
 
     this.characterService.getUser(userId).subscribe((response) => {
       if (response.user) {
-        console.log('User:', response.user.personalityType);
         this.username = response.user.username;
         this.personality = response.user.personalityType;
-
+        this.userLevel = response.user.character.level;
       }
     }
     );
@@ -94,6 +98,12 @@ export class ProfileComponent implements OnInit{
         this.powerText = `
           <p><b>Stealth and Cunning:</b> Navigate the shadows with nimble grace, where stealth and cunning are your greatest tools. Remember, with great agility comes the responsibility to wield it wisely, for the shadows hold both secrets and dangers.</p>
           <p><b>Master of Deception:</b> Let your wit and guile be your allies. In the intricate dance of deception, trust in your instincts and adapt swiftly to unravel the schemes of your foes.</p>
+        `;
+        break;
+      case 'berserk':
+        this.powerText = `
+          <p><b>Unrelenting Fury:</b> You have chosen the hard path, where rage and determination fuel your every step. As a berserk, your strength is unparalleled, but so too are the challenges you face. Embrace the chaos within and let it drive you to conquer the insurmountable.</p>
+          <p><b>Legend of the Berserk:</b> This special class can only be picked manually, for it requires a spirit unyielding and a heart ready for the most daunting quests. With each victory, carve your name into the annals of legend, for only the strongest survive the path of the berserk.</p>
         `;
         break;
       default:
@@ -138,9 +148,15 @@ export class ProfileComponent implements OnInit{
     if (!this.newChangedClass) {
       this.newChangedClass = classType;
     }
-    
 
-    console.log('New class:', this.newChangedClass);
+    if (classType == "berserk") {
+      //execute Parent function
+      this.appComponent.specialEvent();
+    //else
+    } else {
+      this.appComponent.clearSpecialEvent();
+    }
+
     
 
     this.characterService.assignClassToUser(userId, this.newChangedClass).subscribe((response) => {

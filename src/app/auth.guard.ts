@@ -34,16 +34,16 @@ export const authGuard: CanActivateFn = (route, state) => {
             })
           );
         } else {
-          router.navigate(['/login']);
+          router.navigate(['/landingpage']);
           return of(false);
         }
       } else {
-        router.navigate(['/login']);
+        router.navigate(['/landingpage']);
         return of(false);
       }
     }),
     catchError(() => {
-      router.navigate(['/login']);
+      router.navigate(['/landingpage']);
       return of(false);
     })
   );

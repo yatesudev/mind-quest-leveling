@@ -13,6 +13,20 @@
 
         <!-- ng if character undentified then display loading-->
         <div class="item">
+            <h1>{{character.class}}</h1>
+            <div class="class-image {{character.class}}"></div>
+            <p><span class="epicTitle username">Level: {{userLevel}}</span></p>
+            <br>
+        </div>
+
+    </div> 
+
+    <br>
+
+
+    <div *ngIf="character" class="content">
+
+        <div class="item">
             <h2>Change Class</h2>
             <!-- List select or -->
             <select #selectedClass (change)="changedClass(selectedClass.value)" title="Choose your class">
@@ -20,19 +34,9 @@
                 <option value="mage">Mage</option>
                 <option value="healer">Healer</option>
                 <option value="rogue">Rogue</option>
+                <option value="berserk">𒉭Berserk𒉭</option>
             </select>
             <button (click)="changeClass(selectedClass.value)">Accept</button>
-        </div>
-    </div> 
-
-    <br>
-
-
-    <div *ngIf="character" class="content">
-        <div class="item">
-            <h1>{{character.class}}</h1>
-            <div class="class-image {{character.class}}"></div>
-            <br>
         </div>
     </div>
 
@@ -66,13 +70,7 @@
             <a class="personalityLink underline" href="https://www.16personalities.com/free-personality-test" target="_blank" rel="noopener noreferrer">Find Out Your Personality Type!</a>
             <button (click)="changePersonality(personalityType.value)" >Accept</button>
         </div>
-
-        <div (click)="logout()" class="item interactable full-width">
-            <button class="logoutButton"><p>Logout</p></button>
-        </div>
-
     </div>
-
 
     <br>
 
@@ -84,4 +82,9 @@
         </div>
     </div>
     
+    <div class="content">
+    <div (click)="logout()" class="item interactable">
+        <button class="logoutButton"><p>Logout</p></button>
+    </div>
+</div>
 </div>

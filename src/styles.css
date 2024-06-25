@@ -16,7 +16,7 @@
 body {
     background: #77706f;
     font-family: 'VeniceClassic', sans-serif;
-    font-size: calc(calc(1.4vh + 0.2vw)*1.2);
+    font-size: 30px;
     letter-spacing: 2px;
     overflow: hidden;
     position: relative;
@@ -97,9 +97,6 @@ body::before {
 
 
 
-
-
-
 @media screen and (max-aspect-ratio: 1/1) {
     .mountainOverlay {
         background-position: center; /* Center the background on longer screens */
@@ -136,7 +133,10 @@ h2 {
     overflow: auto;
     max-height: 100vh;
     min-height: 60vh;
-    padding-bottom: 26vh;
+    padding: 0;
+    padding-bottom: 30vh;
+    border-radius: 15px;
+
 }
 
 

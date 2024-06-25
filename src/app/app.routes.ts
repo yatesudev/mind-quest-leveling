@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'quests', component: QuestsComponent, canActivate: [authGuard]},
   {path: 'itemview', component: ItemComponent, canActivate: [authGuard]},
   {path: 'tasks', component: TasksComponent, canActivate: [authGuard]},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard' }
   
 ];
