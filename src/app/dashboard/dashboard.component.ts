@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
-
 import { ItemService } from '../item.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,27 +19,59 @@ export class DashboardComponent implements OnInit {
   };
 
   user: any;
+  lootboxes: number = 0;
 
   characterImage: string = '';
   xpPercentage: number = 0;
+
+
+  timeLeft: number = 0;
 
   currentQuest: any = {
     name: "",
     description: "",
     xp: "",
     progress: 0,
-    timeLeft: 0
+    timeLeft: 0 // time left in milliseconds
   };
-
 
   constructor(
     private characterService: CharacterService,
     private authService: AuthService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.setCharacterPanel();
+  }
+
+  animateProgressBar() {
+    const startProgress = this.currentQuest.progress;
+    const startTime = Date.now();
+    const endTime = startTime + this.currentQuest.timeLeft;
+
+    const animate = () => {
+      const now = Date.now();
+      const elapsed = now - startTime;
+      const progress = Math.min(startProgress + (elapsed / this.currentQuest.timeLeft) * (100 - startProgress), 100);
+
+      this.currentQuest.progress = progress;
+
+      // Update timeLeft for display
+      this.timeLeft = Math.max((endTime - now) / 1000 / 60, 0); // convert to minutes
+      this.timeLeft = parseFloat(this.timeLeft.toFixed(2)); // round to 2 decimal places
+
+      if (now < endTime) {
+        requestAnimationFrame(animate);
+      } else {
+        if (this.currentQuest.progress) {
+          window.location.reload(); // Refresh the page to update the character panel
+        }
+      }
+    };
+
+    requestAnimationFrame(animate);
   }
 
   setCharacterPanel() {
@@ -54,8 +85,14 @@ export class DashboardComponent implements OnInit {
       if (response.user) {
         this.character = response.user.character;
         this.user = response.user;
-        this.updateCurrentQuest(this.user.activeQuest)
+        this.updateCurrentQuest(this.user.activeQuest);
         this.calculateXpPercentage(this.character.stats.xp);
+
+        // Fetch lootboxes
+        this.characterService.getUserLootboxes(userId).subscribe((lootboxResponse) => {
+          this.lootboxes = lootboxResponse.lootboxes;
+          console.log("Check amount of Lootboxes:", this.lootboxes);
+        });
       }
     });
   }
@@ -73,18 +110,14 @@ export class DashboardComponent implements OnInit {
       timeLeft: this.calculateTimeLeft(quest.startTime, quest.endTime)
     };
 
-    console.log(this.currentQuest.progress);
-
+    this.animateProgressBar(); // Ensure the animation starts after setting the current quest
   }
 
   calculateTimeLeft(startTime: Date, endTime: Date): number {
     const now = new Date();
     const end = new Date(endTime);
 
-    let time = ((end.getTime() - now.getTime()) / 1000 / 60);
-    /* round time */ 
-    time = Math.floor(time+0.99);
-    return time;
+    return Math.max(end.getTime() - now.getTime(), 0); // time left in milliseconds
   }
 
   calculateQuestProgress(startTime: Date, endTime: Date): number {
@@ -95,23 +128,29 @@ export class DashboardComponent implements OnInit {
     const totalDuration = end.getTime() - start.getTime();
     const elapsedDuration = now.getTime() - start.getTime();
 
-    return (elapsedDuration / totalDuration) * 100;
+    return Math.min((elapsedDuration / totalDuration) * 100, 100);
   }
 
   getCharacterImage(characterClass: string): string {
-    // Assuming you have images stored in assets folder
     return `assets/images/${characterClass}.png`;
   }
 
   calculateXpPercentage(xp: number): void {
-    // Assuming level up requires 100 XP for simplicity
     const xpForNextLevel = 100;
     this.xpPercentage = (xp / xpForNextLevel) * 100;
   }
 
+  redirectToLootbox() {
+    this.router.navigate(['/lootbox']);
+  }
+
+  isInvalidTime(timeLeft: number): boolean {
+    return isNaN(timeLeft) || timeLeft === null || timeLeft === undefined;
+  }
+
   requestRandomItems() {
-    const randomItemId = this.itemService.getRandomItemId(); // Replace with your logic to get a random item ID
-    const randomRarity = this.itemService.getRandomRarity(); // Replace with your logic to get a random rarity level
+    const randomItemId = this.itemService.getRandomItemId();
+    const randomRarity = this.itemService.getRandomRarity();
 
     const userId = this.authService.getUserId();
 
@@ -119,12 +158,9 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    console.log("Rarity: ", randomRarity);
-
     this.itemService.addItemToInventory(userId, randomItemId, randomRarity).subscribe(
       () => {
         console.log('Random item added to inventory successfully');
-        // Optionally, refresh inventory display or perform other actions
       },
       (error) => {
         console.error('Failed to add random item to inventory', error);

@@ -1,10 +1,30 @@
-<h3 class="subHeader">Inventory</h3>
+<h3 class="subHeader">Inventory ({{getCountedAmount()}}/100)</h3>
+
+
 <div class="responsive-container">
+  <p class="subHeader">Sort Items</p>
+  <div class="content">
+    <div class="item">
+      <button (click)="sortItemsByRarity()">Sort by Rarity</button>
+    </div>
+
+    <div class="item">
+      <button (click)="sortItemsByQuantity()">Sort by Quantity</button>
+    </div>
+
+    <div class="item">
+      <button (click)="randomizeItems()">Randomize Items</button>
+    </div>
+  </div>
+
+  <br>
   <div class="content">
     <div *ngIf="isDataLoaded">
       <div class="inventory-container">
         <div class="inventory-item interactable rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory" (click)="onItemClicked(invItem)">
+
           <div class="item">
+
             <div class="item-image {{getItemDetails(invItem.itemId)?.name}}"></div>
 
             <div class="item-details">

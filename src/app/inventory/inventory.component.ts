@@ -18,7 +18,17 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit() {
     this.loadItems();
-    this.loadInventory();
+    this.loadInventory(); 
+  }
+
+  getCountedAmount() {
+    let num = 0;
+
+    this.inventory.forEach((item) => {
+      num += 1;
+    });
+
+    return num;
   }
 
   loadItems() {
@@ -75,4 +85,30 @@ export class InventoryComponent implements OnInit {
     this.itemService.setSelectedItemRarity(item.rarity);
     this.router.navigate(['/itemview']);
   }
+
+  // Sorting function to sort items by their rarity
+  sortItemsByRarity() {
+    this.inventory.sort((a, b) => {
+      return a.rarity - b.rarity;
+    });
+    console.log('Sorted Items:', this.inventory); // For debugging purposes
+  }
+
+  // Sorting function to sort items by their quantity
+  sortItemsByQuantity() {
+    this.inventory.sort((a, b) => {
+      return b.quantity - a.quantity;
+    });
+    console.log('Sorted Items by Quantity:', this.inventory); // For debugging purposes
+  }
+
+  // Function to randomize items
+  randomizeItems() {
+    for (let i = this.inventory.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.inventory[i], this.inventory[j]] = [this.inventory[j], this.inventory[i]];
+    }
+    console.log('Randomized Items:', this.inventory); // For debugging purposes
+  }
+      
 }

@@ -1,15 +1,15 @@
 <h3 class="subHeader">Adventure Chest</h3>
 
 <div class="responsive-container">
-    <div class="content">
-        <div class="outer-container container-wrapper">
-            <div #rendererContainer class="renderer-container ">
-
-            </div>
-            <div class="chest-btn">
-                <button (click)="playAnimation()" >Open your Chest!</button>
-            </div>
-        </div>
+  <div class="content">
+    <div class="outer-container container-wrapper">
+      <div #rendererContainer class="renderer-container"></div>
+      <div class="chest-btn" *ngIf="lootboxes > 0">
+        <button (click)="playAnimation()">Open your Chest!</button>
+      </div>
+      <div class="no-lootbox-msg" *ngIf="lootboxes <= 0">
+        <p>No lootboxes available</p>
+      </div>
     </div>
+  </div>
 </div>
-

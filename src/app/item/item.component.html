@@ -1,7 +1,16 @@
 <h3 class="subHeader">{{ itemName }}</h3>
-<h3 class="subHeader">{{ itemRarity }}</h3>
+<p class="subHeader">{{ itemRarity }}</p>
     <div class="content">
-        <div class="outer-container">
+        <div class="outer-container container-wrapper">
             <div #canvas class="renderer-container"></div>
+        </div>
+    </div>
+    <br>
+    <div class="content">
+        <div class="go-to-dashboard-btn">
+            <div class="inline-block">
+                <a  href="/inventory"><button>Show Inventory</button></a>
+                <a #button href="/lootbox" style="display: none;"><button>Open Another Lootbox</button></a>
+            </div>
         </div>
     </div>

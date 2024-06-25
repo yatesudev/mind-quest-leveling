@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
+import { ToastrService } from 'ngx-toastr';
+import {Howl, Howler} from 'howler';
 
 @Component({
   selector: 'app-character-creation',
@@ -116,7 +118,8 @@ export class CharacterCreationComponent {
     },
   ];
 
-  constructor(private characterService: CharacterService, private authService: AuthService) {
+  constructor(private characterService: CharacterService, private authService: AuthService,     private toastr: ToastrService // Inject ToastrService here
+  ) {
     console.log('Character creation component loaded');
   }
 
@@ -152,14 +155,20 @@ export class CharacterCreationComponent {
     const userId = this.authService.getUserId();
     if (userId) {
       this.characterService.assignClassToUser(userId, characterClass)
-        .subscribe(response => {
-          console.log('Class assigned:', response);
-          this.assignedClass = characterClass;
-        }, error => {
-          console.error('Error assigning class:', error);
+        .subscribe({
+          next: (response) => {
+            console.log('Class assigned:', response);
+            this.assignedClass = characterClass;
+            this.toastr.success('Character class assigned successfully');
+          },
+          error: (error) => {
+            console.error('Error assigning class:', error);
+            this.toastr.error('Failed to assign character class. Please try again.');
+          }
         });
     } else {
       console.error('User ID is null');
+      this.toastr.error('Failed to get user ID. Please try again.');
     }
   }
 

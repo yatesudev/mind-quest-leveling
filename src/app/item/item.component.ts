@@ -2,6 +2,9 @@ import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ItemService } from '../item.service';
+import { CharacterService } from '../character.service';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-item',
@@ -10,6 +13,7 @@ import { ItemService } from '../item.service';
 })
 export class ItemComponent implements AfterViewInit {
   @ViewChild('canvas') private canvasRef!: ElementRef;
+  @ViewChild('button') private buttonRef!: ElementRef;
 
   // Three.js variables
   private renderer!: THREE.WebGLRenderer;
@@ -18,13 +22,38 @@ export class ItemComponent implements AfterViewInit {
   private mesh!: THREE.Mesh;
   private controls!: OrbitControls;
 
+  public lootboxAmount: number = 1;
+
   public itemName: string = this.itemService.getSelectedItem().name;
   public itemRarity: string = this.itemService.rarityTypeIdtoRarityName(this.itemService.getSelectedItemRarity());
 
-  constructor(private itemService: ItemService) {}
+  constructor(private itemService: ItemService, private characterService: CharacterService, private authService: AuthService) { }
+
+  getUserLootboxes() {
+    const userId = this.authService.getUserId();
+
+    if (!userId) {
+      return;
+    }
+
+    this.characterService.getUserLootboxes(userId).subscribe((lootboxResponse) => {
+      console.log('Lootbox response:', lootboxResponse); // Debug log
+      this.lootboxAmount = lootboxResponse.lootboxes;
+      if (this.lootboxAmount > 0) {
+        //display button style block
+        this.buttonRef.nativeElement.style.display = 'block';
+      }
+    }, (error) => {
+      console.error('Error fetching lootboxes:', error); // Error handling
+    });
+
+    console.log('Lootbox amount:', this.lootboxAmount); // Debug log
+  }
 
   ngAfterViewInit(): void {
     this.initThreeJS();
+
+    this.getUserLootboxes()
   }
 
   private initThreeJS(): void {

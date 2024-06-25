@@ -1,19 +1,14 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  HostListener,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, HostListener, AfterViewInit } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { switchMap } from 'rxjs/operators';
 import { ItemService } from '../item.service';
-import { map } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { CharacterService } from '../character.service';
 import { Item } from '../item.model';
+import { ToastrService } from 'ngx-toastr'; // Import ToastrService
 
 @Component({
   selector: 'app-lootbox',
@@ -32,14 +27,26 @@ export class LootboxComponent implements OnInit, AfterViewInit {
   private model!: THREE.Group;
 
   private itemList: Item[] = [];
+  lootboxes: number = 0;
 
-  constructor(private itemService: ItemService, private authService: AuthService, private router: Router) {}
+  private randomItemId: any;
+  private randomRarity: any;
+
+  constructor(
+    private itemService: ItemService,
+    private authService: AuthService,
+    private router: Router,
+    private characterService: CharacterService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.itemService.getItems().subscribe((data) => {
       this.itemList = data;
       console.log('Item list:', this.itemList);
     });
+
+    this.checkLootboxes();
   }
 
   ngAfterViewInit() {
@@ -48,29 +55,40 @@ export class LootboxComponent implements OnInit, AfterViewInit {
     this.animate();
   }
 
+  private checkLootboxes() {
+    const userId = this.authService.getUserId();
+
+    if (!userId) {
+      return;
+    }
+
+    this.characterService.getUserLootboxes(userId).subscribe(
+      (response) => {
+        this.lootboxes = response.lootboxes;
+      },
+      (error) => {
+        console.error('Failed to fetch lootboxes', error);
+        this.lootboxes = 0; // Default to 0 if there's an error
+      }
+    );
+  }
+
   private initThreeJS() {
-    // Renderer
     this.renderer = new THREE.WebGLRenderer({ alpha: true });
     this.setRendererSize();
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
 
-    // Scene
     this.scene = new THREE.Scene();
-
-    // Camera
     this.camera = new THREE.PerspectiveCamera(75, this.rendererContainer.nativeElement.clientWidth / this.rendererContainer.nativeElement.clientHeight, 0.1, 1000);
-    this.camera.position.z = 5; // Adjust camera position if needed
+    this.camera.position.z = 5;
 
-    // Controls
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableRotate = true;
-    this.controls.enableZoom = false; 
+    this.controls.enableZoom = false;
     this.controls.enablePan = false;
-
     this.controls.rotateSpeed = 0.5;
 
-    // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     this.scene.add(ambientLight);
 
@@ -78,7 +96,6 @@ export class LootboxComponent implements OnInit, AfterViewInit {
     directionalLight.position.set(5, 5, 5).normalize();
     this.scene.add(directionalLight);
 
-    // Handle window resize
     window.addEventListener('resize', this.onWindowResize.bind(this), false);
   }
 
@@ -88,7 +105,6 @@ export class LootboxComponent implements OnInit, AfterViewInit {
 
   private loadGLBModel() {
     const loader = new GLTFLoader();
-    const textureLoader = new THREE.TextureLoader();
 
     loader.load('assets/models/lootbox.glb', (gltf) => {
       const object = gltf.scene;
@@ -104,7 +120,6 @@ export class LootboxComponent implements OnInit, AfterViewInit {
       this.scene.add(object);
       this.model = object;
 
-      // Set up animation mixer if animations are present
       if (gltf.animations && gltf.animations.length > 0) {
         this.mixer = new THREE.AnimationMixer(object);
         this.model['animations'] = gltf.animations;
@@ -125,24 +140,19 @@ export class LootboxComponent implements OnInit, AfterViewInit {
     }
   }
 
+
   playAnimation() {
-    console.log('playAnimation called');
-
     if (this.mixer && this.model && this.model['animations']) {
-      console.log("play animation");
-
       this.mixer.stopAllAction();
 
       const action = this.mixer.clipAction(this.model['animations'][1]);
       action.setLoop(THREE.LoopOnce, 1);
       action.clampWhenFinished = true;
 
-      // Disable controls when animation starts
       this.controls.enabled = false;
 
       action.play();
 
-      // Add event listener to re-enable controls when animation finishes
       this.mixer.addEventListener('finished', () => {
         this.controls.enabled = true;
         this.openLootbox();
@@ -153,8 +163,8 @@ export class LootboxComponent implements OnInit, AfterViewInit {
   }
 
   public openLootbox() {
-    const randomItemId = this.itemService.getRandomItemId();
-    const randomRarity = this.itemService.getRandomRarity();
+    this.randomItemId = this.itemService.getRandomItemId();
+    this.randomRarity = this.itemService.getRandomRarity();
 
     const userId = this.authService.getUserId();
 
@@ -162,20 +172,23 @@ export class LootboxComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    console.log("Rarity: ", randomRarity);
-
-    this.itemService.addItemToInventory(userId, randomItemId, randomRarity).subscribe(
+    this.characterService.removeLootbox(userId).pipe(
+      switchMap(() => {
+        return this.itemService.addItemToInventory(userId, this.randomItemId, this.randomRarity);
+      })
+    ).subscribe(
       () => {
-        console.log('Item added to inventory aaaaa:', randomItemId);
-        this.itemService.setSelectedItem(this.itemList[randomItemId]);
-        this.itemService.setSelectedItemRarity(randomRarity);
+        this.itemService.setSelectedItem(this.itemList[this.randomItemId]);
+        this.itemService.setSelectedItemRarity(this.randomRarity);
         this.router.navigate(['/itemview']);
-        console.log('Random item added to inventory successfully: ', randomItemId, randomRarity);
       },
-      (error) => {
-        console.error('Failed to add random item to inventory', error);
+      (error: any) => {
+        console.error('Failed to remove lootbox or add item to inventory', error);
+        this.toastr.error('Failed to change class. Please try again.');
+        // Handle error scenarios here
       }
     );
+    
   }
 
   private animate() {
@@ -183,15 +196,12 @@ export class LootboxComponent implements OnInit, AfterViewInit {
 
     const delta = this.clock.getDelta();
 
-    // Update animation mixer
     if (this.mixer) {
       this.mixer.update(delta);
     }
 
-    // Update controls
     this.controls.update();
 
-    // Render the scene
     this.renderer.render(this.scene, this.camera);
   }
 

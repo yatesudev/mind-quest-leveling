@@ -1,5 +1,16 @@
-<h3 class="subHeader">General Quests</h3>
+<h3 class="subHeader">Quests</h3>
 <div class="responsive-container">
+    <p class="subHeader">Test Quests (just for Testing)</p>
+    <div class="content">
+        <div *ngFor="let quest of displayedTestQuests" class="item interactable" (click)="activateQuest(quest.id)">
+            <h4>{{ quest.name }}</h4>
+            <p>{{ quest.description }}</p>
+            <p>XP: {{ quest.xp }}</p>
+            <p>Time: {{ quest.time }}h</p>
+        </div>
+    </div>
+
+    <p class="subHeader">General Quests</p>
     <div class="content">
         <div *ngFor="let quest of displayedGeneralQuests" class="item interactable" (click)="activateQuest(quest.id)">
             <h4>{{ quest.name }}</h4>
@@ -11,6 +22,7 @@
 
     <br>
 
+    <p class="subHeader">Class Specific Quests</p>
     <div class="content">
         <div *ngFor="let quest of displayedClassQuests" class="item interactable" (click)="activateQuest(quest.id)">
             <h4>{{ quest.name }}</h4>

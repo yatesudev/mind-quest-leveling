@@ -17,45 +17,19 @@
                 <div>
                     <p id="class">{{ character.class }}</p>
                 </div>
+                <p>Level: {{ character.level }}</p>
                 <div id="xpContainer">
                     <div class="xp-bar" [style.width.%]="xpPercentage"></div>
-                    <p>Level: {{ character.level }}</p>
                 </div>
             </div>
         </a>
-    </div>
 
-    <br>
-
-    <div class="content quest-container">
-        <div class="item">
-            <h3>Current Quest: {{ currentQuest.name }}</h3>
-            <p>{{ currentQuest.description }}</p>
-
-            <p>Time left: {{ currentQuest.timeLeft }} Min</p>
-
-            <div id="xpContainer">
-                <div class="xp-bar" [style.width.%]="currentQuest.progress"></div>
-            </div>
-        </div>
-        <br>
-        <a href="/quests">
-            <div class="item interactable">
-                <button>
-                    View Quest List
-                </button>
-            </div>
-        </a>
-    </div>
-
-    <br>
-
-    <div class="content">
         <a href="/inventory">
             <div class="item interactable">
-                <button>
+                <h2 class="epicTitle">
                     Inventory
-                </button>
+                </h2>
+                <img class="chest-img" src="assets/img/icons/dashboardBag.png" alt="Chest">
             </div>
         </a>
 
@@ -69,14 +43,41 @@
         </a>
     </div>
 
-    <!-- DEVTOOL -->
-    <!-- <div class="item interactable">
-            <h2 class="epicTitle">Request Random Items!</h2>
-            <button (click)="requestRandomItems()">Press Me!</button>
-        </div> -->
-
-
     <br>
+
+    <div #questComponent class="content quest-container">
+        <div class="item">
+            <div *ngIf="(currentQuest.timeLeft > 0) ;else noQuestNotify">
+            <h3>Current Quest: {{ currentQuest.name }}</h3>
+            <p>{{ currentQuest.description }}</p>
+            <p>Time left: {{ timeLeft }} Min</p>
+
+            <div id="xpContainer">
+                <div class="xp-bar" [ngStyle]="{'width.%': currentQuest.progress}"></div>
+              </div>
+            </div>
+            
+            <ng-template #noQuestNotify>
+                <p>No active Quest</p>
+            </ng-template>
+        </div>
+
+        <div *ngIf="lootboxes > 0" class="item">
+            <div>
+                <p>You have some <b>Adventure Chests</b> to Open!</p>
+                <h2 class="epicTitle" style="margin-top: 0;">{{lootboxes}}</h2>
+                    <button (click)="redirectToLootbox()">Open Chest</button>
+                </div>
+        </div>
+
+        <a href="/quests">
+            <div class="item interactable">
+                <button>
+                    View Quest List
+                </button>
+            </div>
+        </a>
+    </div>
 
     <div>
 

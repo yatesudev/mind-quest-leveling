@@ -93,6 +93,25 @@ router.post('/assign-class', async (req, res) => {
   }
 });
 
+// Assign User personality route
+router.post('/assign-personality', async (req, res) => {
+  const { userId, personalityType } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.personalityType = personalityType;
+    await user.save();
+
+    res.status(200).json({ message: 'Personality type assigned successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
 // Check if user has a character route
 router.get('/has-character/:userId', async (req, res) => {
   try {
@@ -126,6 +145,10 @@ router.get('/get-user/:userId', async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
+    // Check and update the quest status
+    await user.checkAndUpdateQuestStatus();
+
     res.json({ user: user });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
@@ -292,6 +315,41 @@ router.get('/get-user-quests/:userId', async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 });
+
+router.get('/get-lootboxes/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ lootboxes: user.lootboxes });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+router.delete('/remove-lootbox/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Modify this according to your user schema
+    user.lootboxes -= 1; // Decrease lootboxes count by 1
+
+    await user.save();
+
+    res.status(200).json({ message: 'Lootbox removed successfully', user });
+  } catch (error) {
+    console.error('Error removing lootbox:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
 
 
 module.exports = router;

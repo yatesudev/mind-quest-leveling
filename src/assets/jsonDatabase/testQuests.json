@@ -1,0 +1,7 @@
+[
+  { "id": "tes_1", "name": "Nature Walk", "description": "Take a peaceful walk in nature to relax and rejuvenate.", "xp": 30, "time": 0.01 },
+  { "id": "tes_2", "name": "Reading Session", "description": "Read a book from your favorite genre to unwind and stimulate your mind.", "xp": 20, "time": 0.01 },
+  { "id": "tes_3", "name": "Gardening", "description": "Spend time gardening to connect with nature and nurture plants.", "xp": 30, "time": 0.01 },
+  { "id": "tes_4", "name": "Artistic Expression", "description": "Engage in a creative activity like drawing, painting, or crafting.", "xp": 25, "time": 0.01 },
+  { "id": "tes_5", "name": "Cooking Experiment", "description": "Try cooking a new recipe or dish to expand your culinary skills.", "xp": 25, "time": 0.01 }
+]

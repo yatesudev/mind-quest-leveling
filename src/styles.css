@@ -233,6 +233,12 @@ input[type="password"]:focus {
     outline: none; /* Optional: to remove the default focus outline */
 }
 
+.inline-block {
+    display: flex;
+    flex-wrap: wrap; /* This allows the items to wrap to the next line if necessary */
+    width: 100%;
+}
+
 /* Pixel Art Button Styling */
 button {
     display: inline-block;
@@ -243,7 +249,7 @@ button {
     text-transform: uppercase;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    transition: all 0.3s;
     border-radius: 10px;
     font-family: 'VeniceClassic', sans-serif;
 
@@ -251,6 +257,7 @@ button {
   }
   
   button:hover {
+    scale: 1.1;
     background-color: #ddd; /* Adjust hover color */
   }
   

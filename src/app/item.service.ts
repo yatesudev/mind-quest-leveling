@@ -6,8 +6,6 @@ import { environment } from './environment';
 import { map } from 'rxjs/operators';
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -91,6 +89,7 @@ export class ItemService {
 
   //add PlayerItem with rarity
   addItemToInventory(userId: string, itemId: number, rarity: number): Observable<void> {
+    console.log('Adding item to inventory:', userId, itemId, rarity);
     return this.http.post<void>(`${this.apiUrl}/inventory/${userId}/add-item`, { itemId, rarity });
   } 
   

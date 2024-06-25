@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { CharacterService } from '../character.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router'; // Import the Router
 
 @Component({
   selector: 'app-quests',
@@ -14,25 +16,38 @@ import { CharacterService } from '../character.service';
 export class QuestsComponent implements OnInit {
   generalQuests: any[] = [];
   classQuests: any = {};
+  testQuests: any[] = [];
+
   selectedClass: string = ""; // Default selected class
 
   displayedGeneralQuests: any[] = [];
   displayedClassQuests: any[] = [];
+  displayedTestQuests: any[] = [];
 
   constructor(
     private http: HttpClient, 
     private authService: AuthService, 
-    private characterService: CharacterService
+    private characterService: CharacterService,
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.getUserClass();
     this.loadGeneralQuests();
+    this.loadTestQuests();
   }
 
   loadGeneralQuests(): void {
     this.http.get<any[]>('assets/jsonDatabase/generalQuests.json').subscribe(data => {
       this.generalQuests = data;
+      this.pickRandomQuests();
+    });
+  }
+
+  loadTestQuests(): void {
+    this.http.get<any[]>('assets/jsonDatabase/testQuests.json').subscribe(data => {
+      this.testQuests = data;
       this.pickRandomQuests();
     });
   }
@@ -73,6 +88,10 @@ export class QuestsComponent implements OnInit {
     if (selectedClassQuests.length > 0) {
       this.displayedClassQuests = this.getRandomItems(selectedClassQuests, 5);
     }
+
+    if (this.testQuests.length > 0) {
+      this.displayedTestQuests = this.getRandomItems(this.testQuests, 5);
+    }
   }
 
   getRandomItems(array: any[], count: number): any[] {
@@ -98,37 +117,49 @@ export class QuestsComponent implements OnInit {
       // Check if activeQuest is defined and not empty
       if (activeQuest && Object.keys(activeQuest).length > 0) {
         console.log('User already has an active quest:', activeQuest);
+        this.toastr.info('User already has an active quest:', activeQuest);
+
         return; // Exit function if user already has an active quest
       }
     
-      console.log('No active quest found for the user.');
-    
+
+
       // Activate the quest
       const questToActivate = this.findQuestById(questId); // Replace with your logic to find quest by ID
       if (questToActivate) {
         this.characterService.activateQuest(userId, questToActivate).subscribe(
           (activationResponse) => {
             console.log('Quest activated:', questToActivate);
-            // Handle success, e.g., display a message or update UI
+            this.toastr.success('Quest activated');
+           
+            // Navigate to the dashboard upon successful activation
+            this.router.navigate(['/dashboard']);
+
           },
           (error) => {
             console.error('Error activating quest:', error);
+            this.toastr.error('You already have an active Quest');
           }
         );
       } else {
         console.error('Quest not found:', questId);
+        this.toastr.error('Quest not found:');
       }
     }, error => {
       console.error('Error fetching user quests:', error);
+      this.toastr.error('Error fetching user quests:');
     });
   }
 
   findQuestById(questId: string): any {
-    // Search in displayedGeneralQuests and displayedClassQuests
     let quest = this.displayedGeneralQuests.find(q => q.id === questId);
     if (!quest) {
       quest = this.displayedClassQuests.find(q => q.id === questId);
     }
+    if (!quest) {
+      quest = this.displayedTestQuests.find(q => q.id === questId);
+    }
     return quest;
   }
+  
 }

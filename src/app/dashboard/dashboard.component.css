@@ -38,12 +38,6 @@
     transition: width 0.5s;
 }
 
-.inline-block {
-    display: flex;
-    flex-wrap: wrap; /* This allows the items to wrap to the next line if necessary */
-    width: 100%;
-}
-
 .inline-block div {
     flex: 1 1 auto; /* This makes each item flexible and allows it to grow/shrink */
     min-width: 100px; /* Set a minimum width for each item */
@@ -111,4 +105,19 @@ a {
 .chest-img {
   width: 100px;
   height: 100px;
+}
+
+#xpContainer {
+  width: 100%;
+  background-color: #e0e0e0;
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.xp-bar {
+  height: 20px;
+  background-color: #76c7c0;
+  width: 0;
+  transition: width 0.2s ease-in-out; /* Smooth animation */
 }

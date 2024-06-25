@@ -37,26 +37,30 @@
     <div class="content">
         <div class="item">
             <h2>Select Your Personality Type</h2>
-            <select id="personality-type" name="personality-type">
-            <option value="ISTJ">ISTJ - Introverted, Sensing, Thinking, Judging</option>
-            <option value="ISFJ">ISFJ - Introverted, Sensing, Feeling, Judging</option>
-            <option value="INFJ">INFJ - Introverted, Intuitive, Feeling, Judging</option>
-            <option value="INTJ">INTJ - Introverted, Intuitive, Thinking, Judging</option>
-            <option value="ISTP">ISTP - Introverted, Sensing, Thinking, Perceiving</option>
-            <option value="ISFP">ISFP - Introverted, Sensing, Feeling, Perceiving</option>
-            <option value="INFP">INFP - Introverted, Intuitive, Feeling, Perceiving</option>
-            <option value="INTP">INTP - Introverted, Intuitive, Thinking, Perceiving</option>
-            <option value="ESTP">ESTP - Extraverted, Sensing, Thinking, Perceiving</option>
-            <option value="ESFP">ESFP - Extraverted, Sensing, Feeling, Perceiving</option>
-            <option value="ENFP">ENFP - Extraverted, Intuitive, Feeling, Perceiving</option>
-            <option value="ENTP">ENTP - Extraverted, Intuitive, Thinking, Perceiving</option>
-            <option value="ESTJ">ESTJ - Extraverted, Sensing, Thinking, Judging</option>
-            <option value="ESFJ">ESFJ - Extraverted, Sensing, Feeling, Judging</option>
-            <option value="ENFJ">ENFJ - Extraverted, Intuitive, Feeling, Judging</option>
-            <option value="ENTJ">ENTJ - Extraverted, Intuitive, Thinking, Judging</option>
+            <p>Choose your personality type to see how it affects your character.</p>
+
+            <p> Your personality type is: <b>{{personality}}</b></p> <br>
+
+            <select (change)="changedPersonality(personalityType.value)"  #personalityType name="personality-type" >
+            <option value="ISTJ">ISTJ</option>
+            <option value="ISFJ">ISFJ</option>
+            <option value="INFJ">INFJ</option>
+            <option value="INTJ">INTJ</option>
+            <option value="ISTP">ISTP</option>
+            <option value="ISFP">ISFP</option>
+            <option value="INFP">INFP</option>
+            <option value="INTP">INTP</option>
+            <option value="ESTP">ESTP</option>
+            <option value="ESFP">ESFP</option>
+            <option value="ENFP">ENFP</option>
+            <option value="ENTP">ENTP</option>
+            <option value="ESTJ">ESTJ</option>
+            <option value="ESFJ">ESFJ</option>
+            <option value="ENFJ">ENFJ</option>
+            <option value="ENTJ">ENTJ</option>
             </select>
             <a class="personalityLink" href="https://www.16personalities.com/free-personality-test" target="_blank" rel="noopener noreferrer">Find Out Your Personality Type!</a>
-            <button>Accept</button>
+            <button (click)="changePersonality(personalityType.value)" >Accept</button>
         </div>
     </div>
 
@@ -65,19 +69,10 @@
 
     <div class="content">
         <div class="item">
-            <h2>With great power comes great responsiblity.</h2>
-
-            <p>But mark thee well, ye tender apprentices of arcane might, for in thy fledgling hands rests the potential to weave the very fabric of existence. Yet, heed my counsel, for power bestowed upon the indolent and unworthy shall ne'er be naught but a fleeting wisp, lost to the winds of time.</p>
-
-            <p>Lo, 'tis not the mere possession of power that doth elevate thee above the common rabble, but the relentless pursuit of mastery over thine own destiny. Thus, I charge thee: embrace the toil and the struggle, for within these crucibles are the seeds of thy greatness sown.</p>
+            <h2>With great power comes great responsibility.</h2>
     
-            <p>Know this, O seekers of wisdom: the road before thee is fraught with perils untold and trials unnumbered. Each quest thou embark upon is a crucible, designed to temper thy spirit and hone thy resolve. Through the completion of these sacred quests, thou shalt accrue not only power but the sagacity to wield it justly.</p>
-    
-            <p>Let it be known that the pursuit of thine dreams is a path paved with ceaseless endeavor. Rest not on laurels of yesteryear, for the relentless tide of ambition demands ever more of thee. In thine efforts, be thou steadfast as the mountain, unyielding as the oak, and as vigilant as the hawk.</p>
-    
-            <p>Remember, O ye who wouldst ascend to the heights of arcane supremacy: power without wisdom is naught but a beacon to ruin. Thus, let thy heart be pure, thy will indomitable, and thy mind ever sharpened against the grindstone of knowledge. Through perseverance and unwavering dedication to thy quests, thou shalt carve thy name into the annals of legend, and thy power shall be as boundless as the very stars that adorn the night sky.</p>
-    
-            <p>Go forth, young adepts, with valor and vigor. May thy journey be illuminated by the light of thy aspirations, and may the arcane forces that bind this realm heed thy call. For in thee lies the future of our order, and upon thy shoulders rests the mantle of destiny. Fulfill thy quests with fervor, and claim the power that rightfully belongs to those who dare to dream and strive unceasingly in their pursuit.</p>    
+            <div [innerHTML]="powerText"></div>
         </div>
     </div>
+    
 </div>

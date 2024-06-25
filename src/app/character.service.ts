@@ -16,6 +16,10 @@ export class CharacterService {
     return this.http.post<any>(`${this.apiUrl}/assign-class`, { userId, characterClass });
   }
 
+  assignPersonalityToUser(userId: string, personalityType: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/assign-personality`, { userId, personalityType });
+  }
+
   checkUserHasCharacter(userId: string): Observable<{ hasCharacter: boolean }> {
     return this.http.get<{ hasCharacter: boolean }>(`${this.apiUrl}/has-character/${userId}`);
   }
@@ -29,10 +33,19 @@ export class CharacterService {
   }
 
   activateQuest(userId: string, quest: any): Observable<any> {
+    console.log('quest', quest);
     return this.http.post<any>(`${this.apiUrl}/activate-quest`, { userId, quest });
   }
 
   getUserQuests(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/get-user-quests/${userId}`);
   }
+
+  getUserLootboxes(userId: string): Observable<{ lootboxes: number }> {
+    return this.http.get<{ lootboxes: number }>(`${this.apiUrl}/get-lootboxes/${userId}`);
+  }
+
+  removeLootbox(userId: string) {
+    return this.http.delete<any>(`${this.apiUrl}/remove-lootbox/${userId}`);
+  }  
 }
