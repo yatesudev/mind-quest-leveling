@@ -299,7 +299,6 @@ router.post('/activate-quest', async (req, res) => {
   }
 });
 
-
 router.get('/get-user-quests/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
@@ -316,7 +315,38 @@ router.get('/get-user-quests/:userId', async (req, res) => {
   }
 });
 
+router.post('/cancel-quest', async (req, res) => {
+  const { userId } = req.body;
 
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (!user.activeQuest || user.activeQuest.status !== 'active') {
+      return res.status(400).json({ message: 'No active quest to cancel' });
+    }
+
+    // Clear the active quest
+    user.activeQuest = {
+      id: null,
+      name: null,
+      description: null,
+      xp: null,
+      startTime: null,
+      endTime: null,
+      status: 'nil'
+    };
+
+    await user.save();
+
+    res.status(200).json({ message: 'Quest cancelled successfully', user });
+  } catch (error) {
+    console.error('Error cancelling quest:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
 
 router.get('/get-lootboxes/:userId', async (req, res) => {
   try {

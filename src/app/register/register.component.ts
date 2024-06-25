@@ -32,7 +32,7 @@ export class RegisterComponent {
       // Username validation
       if (!this.isUsernameValid(form.value.username)) {
         this.toastr.error(
-          'Username must be at least 6 characters long.');
+          'Username must be at least 4 characters long.');
         return;
       }
 
@@ -67,7 +67,7 @@ export class RegisterComponent {
   }
 
   isUsernameValid(username: string): boolean {
-    return username.length >= 6;
+    return username.length >= 4;
   }
 
   isEmailValid(email: string): boolean {
@@ -76,8 +76,7 @@ export class RegisterComponent {
   }
 
   isPasswordValid(password: string): boolean {
-    const passwordPattern =
-      /^(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordPattern.test(password);
+    const hasNumber = /\d/;
+    return hasNumber.test(password) && password.length >= 8;
   }
 }

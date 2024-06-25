@@ -33,22 +33,21 @@
             </div>
         </a>
 
-        <a href="/tasks">
-            <div class="item interactable">
-                <h2 class="epicTitle">
-                    Tasks List
-                </h2>
-                <img class="chest-img" src="assets/img/tasklist.png" alt="Chest">
-            </div>
-        </a>
-
-
         <a href="/lootbox">
             <div class="item interactable">
                 <h2 class="epicTitle">
                     Adventure Chest
                 </h2>
                 <img class="chest-img scale-img" src="assets/img/chest.png" alt="Chest">
+            </div>
+        </a>
+
+        <a href="/tasks">
+            <div class="item interactable">
+                <h2 class="epicTitle">
+                    Tasks List
+                </h2>
+                <img class="chest-img" src="assets/img/tasklist.png" alt="Chest">
             </div>
         </a>
     </div>
@@ -77,8 +76,8 @@
               </div>
             </div>
             
-            <div class="cancelQuest"> 
-                <button >Cancel Quest</button>
+            <div class="cancelQuest" *ngIf="(currentQuest.timeLeft > 0)"> 
+                <button (click)="cancelQuest()">Cancel Quest</button>
             </div>
 
             <ng-template #noQuestNotify>

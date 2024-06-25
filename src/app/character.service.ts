@@ -41,6 +41,10 @@ export class CharacterService {
     return this.http.get<any[]>(`${this.apiUrl}/get-user-quests/${userId}`);
   }
 
+  cancelQuest(userId: string) {
+    return this.http.post<any>(`${this.apiUrl}/cancel-quest`, { userId });
+  }
+
   getUserLootboxes(userId: string): Observable<{ lootboxes: number }> {
     return this.http.get<{ lootboxes: number }>(`${this.apiUrl}/get-lootboxes/${userId}`);
   }

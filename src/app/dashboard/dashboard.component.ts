@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
           this.toastr.success('Quest completed');
           setTimeout(() => {
             window.location.reload(); // Refresh the page to update the character panel
-          }, 2000);
+          }, 1000);
         }
       }
     };
@@ -121,6 +121,24 @@ export class DashboardComponent implements OnInit {
     };
 
     this.animateProgressBar(); // Ensure the animation starts after setting the current quest
+  }
+
+  cancelQuest() {
+    const userId = this.authService.getUserId();
+  
+    if (!userId) {
+      return;
+    }
+  
+    this.characterService.cancelQuest(userId).subscribe(
+      (response) => {
+        window.location.reload(); // Refresh the page to update the character panel
+        this.toastr.success('Quest cancelled');
+      },
+      (error) => {
+        this.toastr.error('Failed to cancel quest');
+      }
+    );
   }
 
   calculateTimeLeft(startTime: Date, endTime: Date): number {

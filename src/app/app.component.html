@@ -2,6 +2,7 @@
 <div #body [class.monochrome]="isSpecialEvent" class="generalWrapper">
     <h1 class="mqlHeader">MindQuestLeveling</h1>
     <router-outlet></router-outlet>
+    <audio id="specialEventAudio" src="../assets/audio/bersermode.mp3" preload="auto"></audio>
   </div>
   <div *ngIf="showFooter">
     <app-footer></app-footer>
