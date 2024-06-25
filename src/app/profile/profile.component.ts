@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -27,12 +28,18 @@ export class ProfileComponent implements OnInit{
   constructor(
     private characterService: CharacterService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     console.log(this.character);
     this.setProfilePanel();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   setProfilePanel() {

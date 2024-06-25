@@ -162,41 +162,29 @@ h2 {
 
 /* Styles for child elements */
 .item {
-    flex: 1 1 calc(33.333% - 32px); /* Three items per row with some spacing */
-    box-sizing: border-box;
+    flex: 1 1 calc(30% - 32px); /* Three items per row with some spacing */
     padding: 10px 5px;
     margin: 10px 5px;
-
 
     /* Animation */
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.5s ease forwards;
-
-    
+    animation: fadeInUp 0.5s ease forwards;  
 }
 
-/* Media queries for responsiveness */
-
-/* tablet */
-@media (max-width: 768px) {
-    .responsive-container .item {
-        flex: 1 1 calc(50% - 32px); /* Two items per row */
-    }
-}
-
-/* mobile */
-@media (max-width: 480px) {
-    .responsive-container .item {
+/* one item per row media query if mobile */
+@media screen and (max-width: 900px) {
+    .item {
         flex: 1 1 100%; /* One item per row */
     }
 
-
-    .item {
-        display: block;
-        font-size: 1.0rem;
+    .content {
+        flex-direction: column;
     }
+
+
 }
+
 
 /* Keyframes for the fade-in-up animation */
 @keyframes fadeInUp {
@@ -309,6 +297,10 @@ button {
     letter-spacing: 0.2vw;
 
 }
+
+.full-width {
+    min-width: 80%;
+  }
 
 
 /* CLASSES */
@@ -477,3 +469,25 @@ button {
 .Alune {
     background-image: url('./assets/img/items/Alune.png');
 }
+
+
+.Common {
+    color: rgb(134, 255, 110);
+  }
+  
+  .Uncommon {
+    color: rgb(79, 51, 237);
+  }
+  
+  .Rare {
+    color: rgb(255, 247, 17);
+  }
+  
+  .Epic {
+    color: red;
+  }
+  
+  .Legendary {
+    color: red;
+  }
+  

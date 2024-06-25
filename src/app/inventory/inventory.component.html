@@ -18,7 +18,6 @@
   </div>
 
   <br>
-  <div class="content">
     <div *ngIf="isDataLoaded">
       <div class="inventory-container">
         <div class="inventory-item interactable rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory" (click)="onItemClicked(invItem)">
@@ -38,7 +37,6 @@
     </div>
 
     <div class="item" *ngIf="!isDataLoaded">
-      Loading inventory...
+      Inventory is empty...
     </div>
-  </div>
 </div>

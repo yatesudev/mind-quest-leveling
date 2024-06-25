@@ -10,6 +10,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { LootboxComponent } from './lootbox/lootbox.component';
 import { QuestsComponent } from './quests/quests.component';
 import { ItemComponent } from './item/item.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'lootbox', component: LootboxComponent, canActivate: [authGuard]},
   {path: 'quests', component: QuestsComponent, canActivate: [authGuard]},
   {path: 'itemview', component: ItemComponent, canActivate: [authGuard]},
+  {path: 'tasks', component: TasksComponent, canActivate: [authGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/dashboard' }
   

@@ -74,6 +74,11 @@ export class DashboardComponent implements OnInit {
     requestAnimationFrame(animate);
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
   setCharacterPanel() {
     const userId = this.authService.getUserId();
 

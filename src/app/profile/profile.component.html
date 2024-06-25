@@ -24,6 +24,7 @@
 
     <br>
 
+
     <div *ngIf="character" class="content">
         <div class="item">
             <h1>{{character.class}}</h1>
@@ -35,6 +36,10 @@
     <br>
 
     <div class="content">
+        <div (click)="logout()" class="item interactable full-width">
+            <button><p>Logout</p></button>
+        </div>
+
         <div class="item">
             <h2>Select Your Personality Type</h2>
             <p>Choose your personality type to see how it affects your character.</p>

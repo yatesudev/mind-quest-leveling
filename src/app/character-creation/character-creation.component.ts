@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
-import {Howl, Howler} from 'howler';
 
 @Component({
   selector: 'app-character-creation',
