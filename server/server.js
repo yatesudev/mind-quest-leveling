@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/auth');
+const apiRoutes = require('./routes/api');
 const bodyParser = require('body-parser');
 
 require('dotenv').config(); // Load environment variables from .env file
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../dist/mind-quest-leveling/browser')));
 
 // Use auth routes
-app.use('/auth', authRoutes);
+app.use('/api', apiRoutes);
 
 // Catch-all route to serve Angular app
 app.get('*', (req, res) => {
