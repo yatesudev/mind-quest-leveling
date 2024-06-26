@@ -1,7 +1,6 @@
 button {
     display: block;
     margin: 1% auto;
-    /* shadow */
     box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.523);
     transition: all 0.3s;
     max-width: 80%;
@@ -20,17 +19,13 @@ p {
     transition: all 0.3s;
 
     color: white;
-    /* outline black on text with shadow*/
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
     margin-bottom: 3%;
-
-
 }
 
 .responsive-container {
     transition: all 1s;
 }
-
 
 .background {
     padding: 10px;
@@ -58,12 +53,9 @@ p {
     padding: 20px;
 }
 
-
-
 .congratsText {
     color: white;
 }
-
 
 a > div {
     display: block;

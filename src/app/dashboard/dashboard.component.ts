@@ -5,12 +5,14 @@ import { ItemService } from '../item.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+// Defines the DashboardComponent with its metadata
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  // Character object with initial values
   character: any = {
     class: '',
     level: 0,
@@ -19,23 +21,22 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  user: any;
-  lootboxes: number = 0;
+  user: any; // Variable to store user data
+  lootboxes: number = 0; // Number of lootboxes the user has
+  characterImage: string = ''; // URL of the character's image
+  xpPercentage: number = 0; // Percentage of XP towards the next level
+  timeLeft: number = 0; // Time left for the current quest in minutes
 
-  characterImage: string = '';
-  xpPercentage: number = 0;
-
-
-  timeLeft: number = 0;
-
+  // Current quest object with initial values
   currentQuest: any = {
     name: "",
     description: "",
     xp: "",
     progress: 0,
-    timeLeft: 0 // time left in milliseconds
+    timeLeft: 0 // Time left in milliseconds
   };
 
+  // Constructor for the dependencies of the DashboardComponent
   constructor(
     private characterService: CharacterService,
     private authService: AuthService,
@@ -44,10 +45,12 @@ export class DashboardComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
+  // Lifecycle hook called when the component initializes
   ngOnInit() {
-    this.setCharacterPanel();
+    this.setCharacterPanel(); // Set up the character panel with user data
   }
 
+  // Animates the progress bar for the current quest
   animateProgressBar() {
     const startProgress = this.currentQuest.progress;
     const startTime = Date.now();
@@ -61,11 +64,11 @@ export class DashboardComponent implements OnInit {
       this.currentQuest.progress = progress;
 
       // Update timeLeft for display
-      this.timeLeft = Math.max((endTime - now) / 1000 / 60, 0); // convert to minutes
-      this.timeLeft = parseFloat(this.timeLeft.toFixed(2)); // round to 2 decimal places
+      this.timeLeft = Math.max((endTime - now) / 1000 / 60, 0); // Convert to minutes
+      this.timeLeft = parseFloat(this.timeLeft.toFixed(2)); // Round to 2 decimal places
 
       if (now < endTime) {
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animate); // Continue animation if time left
       } else {
         if (this.currentQuest.progress) {
           this.toastr.success('Quest completed');
@@ -76,14 +79,16 @@ export class DashboardComponent implements OnInit {
       }
     };
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animate); // Start animation
   }
 
+  // Logs out the user and navigates to the login page
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
 
+  // Sets up the character panel with user and character data
   setCharacterPanel() {
     const userId = this.authService.getUserId();
 
@@ -101,12 +106,12 @@ export class DashboardComponent implements OnInit {
         // Fetch lootboxes
         this.characterService.getUserLootboxes(userId).subscribe((lootboxResponse) => {
           this.lootboxes = lootboxResponse.lootboxes;
-          console.log("Check amount of Lootboxes:", this.lootboxes);
         });
       }
     });
   }
 
+  // Updates the current quest and starts the progress bar animation
   updateCurrentQuest(quest: any) {
     if (!quest) {
       return;
@@ -123,6 +128,7 @@ export class DashboardComponent implements OnInit {
     this.animateProgressBar(); // Ensure the animation starts after setting the current quest
   }
 
+  // Cancels the current quest
   cancelQuest() {
     const userId = this.authService.getUserId();
   
@@ -141,13 +147,15 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  // Calculates the time left for the current quest
   calculateTimeLeft(startTime: Date, endTime: Date): number {
     const now = new Date();
     const end = new Date(endTime);
 
-    return Math.max(end.getTime() - now.getTime(), 0); // time left in milliseconds
+    return Math.max(end.getTime() - now.getTime(), 0); // Time left in milliseconds
   }
 
+  // Calculates the progress percentage for the current quest
   calculateQuestProgress(startTime: Date, endTime: Date): number {
     const now = new Date();
     const start = new Date(startTime);
@@ -159,23 +167,28 @@ export class DashboardComponent implements OnInit {
     return Math.min((elapsedDuration / totalDuration) * 100, 100);
   }
 
+  // Returns the image URL for the character's class
   getCharacterImage(characterClass: string): string {
     return `assets/images/${characterClass}.png`;
   }
 
+  // Calculates the XP percentage towards the next level
   calculateXpPercentage(xp: number): void {
-    const xpForNextLevel = 100;
+    const xpForNextLevel = 100; // Assuming 100 XP is required for the next level
     this.xpPercentage = (xp / xpForNextLevel) * 100;
   }
 
+  // Redirects to the lootbox page
   redirectToLootbox() {
     this.router.navigate(['/lootbox']);
   }
 
+  // Checks if the time left is invalid
   isInvalidTime(timeLeft: number): boolean {
     return isNaN(timeLeft) || timeLeft === null || timeLeft === undefined;
   }
 
+  // Requests random items and adds them to the user's inventory
   requestRandomItems() {
     const randomItemId = this.itemService.getRandomItemId();
     const randomRarity = this.itemService.getRandomRarity();

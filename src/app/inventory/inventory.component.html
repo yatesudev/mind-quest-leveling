@@ -1,6 +1,4 @@
 <h3 class="subHeader">Inventory ({{getCountedAmount()}}/100)</h3>
-
-
 <div class="responsive-container">
   <p class="subHeader">Sort Items</p>
   <div class="content">
@@ -18,26 +16,27 @@
   </div>
 
   <br>
-    <div *ngIf="isDataLoaded">
-      <div class="inventory-container">
-        <div class="inventory-item interactable rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory" (click)="onItemClicked(invItem)">
+  <div *ngIf="isDataLoaded">
+    <div class="inventory-container">
+      <div class="inventory-item interactable rarityBorder rarity{{invItem.rarity}}" *ngFor="let invItem of inventory"
+        (click)="onItemClicked(invItem)">
 
-          <div class="item">
+        <div class="item">
 
-            <div class="item-image {{getItemDetails(invItem.itemId)?.name}}"></div>
+          <div class="item-image {{getItemDetails(invItem.itemId)?.name}}"></div>
 
-            <div class="item-details">
-              <h3>{{ getItemDetails(invItem.itemId)?.name }} ({{ invItem.quantity }})</h3>
-              <p>rarity level: {{invItem.rarity}}</p>
-              <p><em>"{{ getItemDetails(invItem.itemId)?.description }}"</em></p>
-            </div>
+          <div class="item-details">
+            <h3>{{ getItemDetails(invItem.itemId)?.name }} ({{ invItem.quantity }})</h3>
+            <p>rarity level: {{invItem.rarity}}</p>
+            <p><em>"{{ getItemDetails(invItem.itemId)?.description }}"</em></p>
           </div>
         </div>
       </div>
     </div>
-    <div class="content">
-      <div class="item" *ngIf="!isDataLoaded">
-        Inventory is empty...
-      </div>
+  </div>
+  <div class="content">
+    <div class="item" *ngIf="!isDataLoaded">
+      Inventory is empty...
+    </div>
   </div>
 </div>

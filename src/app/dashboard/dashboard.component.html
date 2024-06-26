@@ -1,6 +1,4 @@
 <h3 class="subHeader">Dashboard</h3>
-
-
 <div class="responsive-container">
     <div class="content">
         <div class="item">
@@ -54,9 +52,7 @@
 
     <br>
 
-
-
-    <div #questComponent class="content quest-container">   
+    <div #questComponent class="content quest-container">
         <a href="/quests">
             <div class="item">
                 <button class="interactable">
@@ -64,19 +60,19 @@
                 </button>
             </div>
         </a>
-        
+
         <div class="item">
             <div *ngIf="(currentQuest.timeLeft > 0) ;else noQuestNotify">
-            <h3>Current Quest: {{ currentQuest.name }}</h3>
-            <p>{{ currentQuest.description }}</p>
-            <p>Time left: {{ timeLeft }} Min</p>
+                <h3>Current Quest: {{ currentQuest.name }}</h3>
+                <p>{{ currentQuest.description }}</p>
+                <p>Time left: {{ timeLeft }} Min</p>
 
-            <div id="xpContainer">
-                <div class="xp-bar" [ngStyle]="{'width.%': currentQuest.progress}"></div>
-              </div>
+                <div id="xpContainer">
+                    <div class="xp-bar" [ngStyle]="{'width.%': currentQuest.progress}"></div>
+                </div>
             </div>
-            
-            <div class="cancelQuest" *ngIf="(currentQuest.timeLeft > 0)"> 
+
+            <div class="cancelQuest" *ngIf="(currentQuest.timeLeft > 0)">
                 <button (click)="cancelQuest()">Cancel Quest</button>
             </div>
 
@@ -85,20 +81,13 @@
             </ng-template>
         </div>
 
-
-
         <div *ngIf="lootboxes > 0" class="item">
             <div>
                 <p>You have some <b>Adventure Chests</b> to Open!</p>
                 <h2 class="epicTitle" style="margin-top: 0;">{{lootboxes}}</h2>
-                    <button (click)="redirectToLootbox()">Open Chest</button>
-                </div>
+                <button (click)="redirectToLootbox()">Open Chest</button>
+            </div>
         </div>
-
         <br>
-    </div>
-
-    <div>
-
     </div>
 </div>

@@ -1,5 +1,4 @@
 <div class="responsive-container">
-
     <div class="content">
         <div class="item">
             <h2>Register</h2>
@@ -14,20 +13,23 @@
                 </div>
                 <div class="border-box">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="enter your password" ngModel required>
+                    <input type="password" id="password" name="password" placeholder="enter your password" ngModel
+                        required>
                 </div>
 
                 <div class="border-box">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="confirm your password" ngModel required>
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                        placeholder="confirm your password" ngModel required>
                 </div>
                 <div class="link-wrapper">
                     <a class="custom-link underline" href="/login">Already have an Account?</a>
-                  </div>
-                <button type="submit" [disabled]="registerForm.form.invalid || registerForm.form.pristine">Register</button>
+                </div>
+                <button type="submit" [disabled]="registerForm.form.invalid || registerForm.form.pristine">Register
+                </button>
             </form>
         </div>
 
-        
+
     </div>
 </div>

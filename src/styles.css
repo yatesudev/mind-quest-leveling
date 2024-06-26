@@ -7,7 +7,6 @@
     font-style: normal;
 }
 
-
 :root {
     --primary-color: #0000;
     --secondary-bg-color: #77706f;
@@ -57,18 +56,22 @@ body::before {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200%; /* Double the width to have two instances of the background image */
+    width: 200%;
+    /* Double the width to have two instances of the background image */
     height: 100%;
     pointer-events: none;
-    overflow: hidden; /* Hide the overflow to ensure only one instance is visible at a time */
+    overflow: hidden;
+    /* Hide the overflow to ensure only one instance is visible at a time */
 }
 
 @keyframes slideLeft {
     0% {
         transform: translateX(0);
     }
+
     100% {
-        transform: translateX(-46.5%); /* Move left by 50% of the element's width */
+        transform: translateX(-46.5%);
+        /* Move left by 50% of the element's width */
     }
 }
 
@@ -76,8 +79,10 @@ body::before {
     0% {
         transform: translateX(-49.5%);
     }
+
     100% {
-        transform: translateX(0%); /* Move left by 50% of the element's width */
+        transform: translateX(0%);
+        /* Move left by 50% of the element's width */
     }
 }
 
@@ -85,15 +90,18 @@ body::before {
     animation: fadeInUp 0.5s ease forwards, slideLeft2 160s linear infinite;
     background-image: url('./assets/img/seamlessClouds.png');
     background-size: auto;
-    background-position: top center; /* Position the background at the top center */
+    background-position: top center;
+    /* Position the background at the top center */
     background-repeat: repeat-x;
     position: fixed;
     top: 0;
     left: 0;
-    width: 200%; /* Double the width to have two instances of the background image */
+    width: 200%;
+    /* Double the width to have two instances of the background image */
     height: 200%;
     pointer-events: none;
-    overflow: hidden; /* Hide the overflow to ensure only one instance is visible at a time */
+    overflow: hidden;
+    /* Hide the overflow to ensure only one instance is visible at a time */
     filter: opacity(0.5);
     z-index: -1;
 }
@@ -102,9 +110,12 @@ body::before {
 
 @media screen and (max-aspect-ratio: 1/1) {
     .mountainOverlay {
-        background-position: center; /* Center the background on longer screens */
-        background-size: cover; /* Cover the entire viewport */
-        transform: none; /* Reset transform */
+        background-position: center;
+        /* Center the background on longer screens */
+        background-size: cover;
+        /* Cover the entire viewport */
+        transform: none;
+        /* Reset transform */
     }
 }
 
@@ -112,6 +123,7 @@ body::before {
     from {
         background-position: 0% 100%;
     }
+
     to {
         background-position: 100% 0%;
     }
@@ -146,11 +158,13 @@ h2 {
 .responsive-container::-webkit-scrollbar {
     display: none !important;
 }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .responsive-container {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.responsive-container {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Flexbox for layout */
@@ -165,14 +179,15 @@ h2 {
 
 /* Styles for child elements */
 .item {
-    flex: 1 1 calc(30% - 32px); /* Three items per row with some spacing */
+    flex: 1 1 calc(30% - 32px);
+    /* Three items per row with some spacing */
     padding: 10px 5px;
     margin: 10px 5px;
 
     /* Animation */
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.5s ease forwards;  
+    animation: fadeInUp 0.5s ease forwards;
 }
 
 /* one item per row media query if mobile */
@@ -181,12 +196,13 @@ h2 {
     h2,
     h1,
     h3,
-    .epicTitle{
+    .epicTitle {
         font-size: calc(32px + (28 - 32) * ((100vw - 400px) / (1600 - 400)));
     }
 
     .item {
-        flex: 1 1 100%; /* One item per row */
+        flex: 1 1 100%;
+        /* One item per row */
     }
 
     .content {
@@ -212,6 +228,7 @@ h2 {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -238,20 +255,26 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     border-bottom: 2px solid #888;
-    outline: none; /* Optional: to remove the default focus outline */
+    outline: none;
+    /* Optional: to remove the default focus outline */
 }
 
 .inline-block {
     display: flex;
-    flex-wrap: wrap; /* This allows the items to wrap to the next line if necessary */
+    flex-wrap: wrap;
+    /* This allows the items to wrap to the next line if necessary */
     width: 100%;
 }
 
 .inline-block div {
-    flex: 1 1 auto; /* This makes each item flexible and allows it to grow/shrink */
-    min-width: 100px; /* Set a minimum width for each item */
-    margin: 5px; /* Add some margin for spacing between items */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    flex: 1 1 auto;
+    /* This makes each item flexible and allows it to grow/shrink */
+    min-width: 100px;
+    /* Set a minimum width for each item */
+    margin: 5px;
+    /* Add some margin for spacing between items */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the element's total width and height */
     margin: auto;
     max-width: fit-content;
 }
@@ -268,21 +291,25 @@ input[type="password"]:focus {
 
 @keyframes colorChange {
     0% {
-      color: rgb(191, 221, 249);
+        color: rgb(191, 221, 249);
     }
+
     25% {
-      color: rgb(191, 249, 191);
+        color: rgb(191, 249, 191);
     }
+
     50% {
-      color: rgb(249, 191, 230);
+        color: rgb(249, 191, 230);
     }
+
     75% {
-      color: rgb(245, 249, 191);
+        color: rgb(245, 249, 191);
     }
+
     100% {
-      color: rgb(217, 191, 249);
+        color: rgb(217, 191, 249);
     }
-  }
+}
 
 /* Pixel Art Button Styling */
 button {
@@ -303,48 +330,53 @@ button {
     animation: rainbow 5s linear infinite;
 
     font-size: 2rem;
-    
 
-  }
 
-  @keyframes rainbow {
+}
+
+@keyframes rainbow {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
 }
-  
-  button:hover {
+
+button:hover {
     scale: 1.1;
-    background-color: #ddd; /* Adjust hover color */
-  }
-  
-  button:active {
-    background-color: #bbb; /* Adjust active color */
-    border-color: #777; /* Adjust active border color */
-  }
+    background-color: #ddd;
+    /* Adjust hover color */
+}
+
+button:active {
+    background-color: #bbb;
+    /* Adjust active color */
+    border-color: #777;
+    /* Adjust active border color */
+}
 
 #footer-character {
     background-image: url('./assets/img/icons/character.png');
     background-size: cover;
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
 }
 
 #footer-dashboard {
     background-image: url('./assets/img/icons/dashboard.png');
     background-size: cover;
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
 }
 
 #footer-inventory {
     background-image: url('./assets/img/icons/inventory.png');
     background-size: cover;
-    background-repeat: no-repeat;   
+    background-repeat: no-repeat;
 }
 
 
@@ -364,8 +396,8 @@ a {
     font-size: 200%;
     padding-bottom: 0;
     margin-bottom: 0;
-    
-    background: -webkit-linear-gradient(#ffef85,#ffe11b, #131313);
+
+    background: -webkit-linear-gradient(#ffef85, #ffe11b, #131313);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -384,7 +416,7 @@ a {
 
 .full-width {
     min-width: 80%;
-  }
+}
 
 
 /* CLASSES */
@@ -393,15 +425,19 @@ a {
     0% {
         filter: drop-shadow(5px 5px 5px red) drop-shadow(-5px -5px 5px yellow);
     }
+
     25% {
         filter: drop-shadow(5px 5px 5px yellow) drop-shadow(-5px -5px 5px green);
     }
+
     50% {
         filter: drop-shadow(5px 5px 5px green) drop-shadow(-5px -5px 5px blue);
     }
+
     75% {
         filter: drop-shadow(5px 5px 5px blue) drop-shadow(-5px -5px 5px red);
     }
+
     100% {
         filter: drop-shadow(5px 5px 5px red) drop-shadow(-5px -5px 5px yellow);
     }
@@ -567,21 +603,20 @@ a {
 
 .Common {
     color: rgb(134, 255, 110);
-  }
-  
-  .Uncommon {
+}
+
+.Uncommon {
     color: rgb(79, 51, 237);
-  }
-  
-  .Rare {
+}
+
+.Rare {
     color: rgb(255, 247, 17);
-  }
-  
-  .Epic {
+}
+
+.Epic {
     color: red;
-  }
-  
-  .Legendary {
+}
+
+.Legendary {
     color: red;
-  }
-  
+}

@@ -8,18 +8,18 @@
       </div>
     </div>
   </div>
-  
-    <ng-template #congratsTemplate>
-      <div class="content congrats">
-          <h3 class="subHeader congratsText">Congratulations</h3>
-          <p>You are now a {{ assignedClass }}.</p>
-          <div class="displayFront">
-            <img class="class-image {{ assignedClass }}" alt="{{ assignedClass }} image">
-            <br>
-            <a href="/dashboard"><div><button>Go to Dashboard</button></div></a>
-          </div>
+
+  <ng-template #congratsTemplate>
+    <div class="content congrats">
+      <h3 class="subHeader congratsText">Congratulations</h3>
+      <p>You are now a {{ assignedClass }}.</p>
+      <div class="displayFront">
+        <img class="class-image {{ assignedClass }}" alt="{{ assignedClass }} image">
+        <br>
+        <a href="/dashboard">
+          <div><button>Go to Dashboard</button></div>
+        </a>
       </div>
-    </ng-template>
+    </div>
+  </ng-template>
 </div>
-
-

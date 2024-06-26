@@ -1,7 +1,7 @@
 .content {
     border-radius: 15px;
     padding: 40px;
-    background:rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.219);
 }
 
@@ -17,18 +17,15 @@
 #class {
     text-transform: uppercase;
     letter-spacing: 5px;
-
 }
 
 .logoutButton {
     width: 40vw;
-
     max-width: 80%;
 }
 
 .username {
     font-size: 1.5em;
-
 }
 
 select {
@@ -49,14 +46,12 @@ select {
     text-overflow: ellipsis;
     white-space: nowrap;
 
-
     display: block;
     margin: auto;
     margin-bottom: 5%;
-  }
+}
 
-  .personalityLink{
+.personalityLink {
     display: block;
     padding-bottom: 30px;
-  }
-
+}

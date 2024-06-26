@@ -5,43 +5,51 @@ import { AppComponent } from '../app.component';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 
+// Defines the LoginComponent with its metadata
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService, private appComponent: AppComponent) {}
+  // Constructor for the dependencies of the LoginComponent
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
+    private appComponent: AppComponent
+  ) {}
 
+  // Lifecycle hook called when the component initializes
   ngOnInit() {
-    this.appComponent.showFooter = false;
+    this.appComponent.showFooter = false; // Hides the footer element
   }
 
+  // Lifecycle hook called when the component is destroyed
   ngOnDestroy() {
-    this.appComponent.showFooter = true;
+    this.appComponent.showFooter = true; // Shows the footer element again
   }
 
+  // Event handler for submitting the login form
   onSubmit(form: any) {
+    // Performs the login process and handles the response
     this.authService.login(form.value).subscribe({
       next: (response) => {
-        //console.log(response);
-        this.toastr.success('Login successful');
-        localStorage.setItem('token', response.token);
-        this.router.navigate(['/dashboard']);
+        this.toastr.success('Login successful'); // Displays success message
+        localStorage.setItem('token', response.token); // Stores the token
+        this.router.navigate(['/dashboard']); // Navigates to the dashboard
       },
       error: (error) => {
-        //console.error(error);
+        // Error handling based on the error status
         if (error.status === 0) {
-          // Network error or server is unreachable
-          this.toastr.error('Unable to connect to the server. Please try again later.');
+          this.toastr.error(
+            'Unable to connect to the server. Please try again later.'
+          );
         } else if (error.status >= 500 && error.status < 600) {
-          // Server-side error
           this.toastr.error('A server error occurred. Please try again later.');
         } else if (error.error && error.error.msg) {
-          // Application-specific error message
           this.toastr.error(error.error.msg);
         } else {
-          // General error message
           this.toastr.error('An unexpected error occurred. Please try again.');
         }
       },

@@ -6,39 +6,45 @@
             <iframe #iframe title="website" frameborder="0" width="100%" height="100%">
             </iframe>
         </div>
-    </div> 
+    </div>
 
     <br>
 
     <div class="content">
         <div class="item">
-            <p>Tasks are meant to be used on the desktop version. You can still use them on mobile, but functionality may be limited.</p>
+            <p>Tasks are meant to be used on the desktop version. You can still use them on mobile, but functionality
+                may be limited.</p>
         </div>
-    </div> 
+    </div>
 
     <br>
 
     <div class="content">
-        <div class="item"><h3 class="subHeader">Enrichment</h3></div>
+        <div class="item">
+            <h3 class="subHeader">Enrichment</h3>
+        </div>
         <div class="item" *ngFor="let website of websitesEnrichment">
             <button (click)="loadWebsite(website.url)">{{ website.name }}</button>
         </div>
-    </div> 
-    
+    </div>
+
     <br>
     <div class="content">
-        <div class="item"><h3 class="subHeader">Educational</h3></div>
+        <div class="item">
+            <h3 class="subHeader">Educational</h3>
+        </div>
         <div class="item" *ngFor="let website of websitesEducation">
             <button (click)="loadWebsite(website.url)">{{ website.name }}</button>
         </div>
     </div>
 
-        
     <br>
     <div class="content">
-        <div class="item"><h3 class="subHeader">Games</h3></div>
+        <div class="item">
+            <h3 class="subHeader">Games</h3>
+        </div>
         <div class="item" *ngFor="let website of websitesGames">
             <button (click)="loadWebsite(website.url)">{{ website.name }}</button>
         </div>
-    </div> 
+    </div>
 </div>

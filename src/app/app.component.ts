@@ -8,31 +8,31 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showFooter: boolean = true;
-  isSpecialEvent: boolean = false;
+  showFooter: boolean = true; // Flag to show/hide footer
+  isSpecialEvent: boolean = false; // Flag for special event state
   
   constructor(private toastr: ToastrService) { }
 
+  // Handle special event
   specialEvent() {
     console.log('Special event');
-    this.toastr.info('Special Event triggered', 'Success');
+    this.toastr.info('Special Event triggered', 'Success'); // Show toast message
 
-    // Play the audio
     const audio = document.getElementById('specialEventAudio') as HTMLAudioElement;
     if (audio) {
-      audio.play();
+      audio.play(); // Play audio if available
     }
 
-    this.isSpecialEvent = true;
+    this.isSpecialEvent = true; // Set special event flag
   }
 
+  // Clear special event
   clearSpecialEvent() {
-    console.log('Clear special event');
     const audio = document.getElementById('specialEventAudio') as HTMLAudioElement;
     if (audio) {
-      audio.pause();
-      audio.currentTime = 0;
+      audio.pause(); // Pause audio
+      audio.currentTime = 0; // Reset audio time
     }
-    this.isSpecialEvent = false;
+    this.isSpecialEvent = false; // Reset special event flag
   }
 }

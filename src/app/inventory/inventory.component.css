@@ -8,34 +8,44 @@
 .inventory-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center items in the container */
-  gap: 10px; /* Adjust the gap between items */
-
+  justify-content: center;
+  /* Center items in the container */
+  gap: 10px;
+  /* Adjust the gap between items */
 }
 
 .inventory-item {
   z-index: 100;
   background-color: rgb(249, 229, 226);
   border-radius: 20px;
-  padding: 10px; /* Reduced padding for smaller items */
+  padding: 10px;
+  /* Reduced padding for smaller items */
   transition: all 0.3s;
   box-shadow: 0px 5px 4px #00000046;
-  flex: 1 1 calc(29% - 10px); /* Calculate item width for 4 items per row */
-  max-width: calc(29% - 10px); /* Set maximum width for each item */
-  min-width: calc(29% - 10px); /* Minimum width to prevent items from becoming too narrow */
+  flex: 1 1 calc(29% - 10px);
+  /* Calculate item width for 4 items per row */
+  max-width: calc(29% - 10px);
+  /* Set maximum width for each item */
+  min-width: calc(29% - 10px);
+  /* Minimum width to prevent items from becoming too narrow */
   text-align: center;
-  font-size: 20px; /* Adjust font size for smaller text */
-  line-height: 1.2; /* Adjust line height for better text readability */
+  font-size: 20px;
+  /* Adjust font size for smaller text */
+  line-height: 1.2;
+  /* Adjust line height for better text readability */
 }
 
 @media screen and (max-width: 600px) {
   .inventory-item {
-    flex: 1 1 100%; /* Make item take full width */
-    max-width: 100%; /* Ensure item occupies full width */
-    min-width: 70%; /* Minimum width to prevent items from shrinking */
+    flex: 1 1 100%;
+    /* Make item take full width */
+    max-width: 100%;
+    /* Ensure item occupies full width */
+    min-width: 70%;
+    /* Minimum width to prevent items from shrinking */
   }
 
-  .inventory-container{
+  .inventory-container {
     padding: 10px;
   }
 }
@@ -49,15 +59,12 @@
   margin-top: 5px;
 }
 
-/* Rarity border styles */
-
 .rarityBorder {
   border: 3px solid;
 }
 
 .rarity0 {
   border-color: rgb(64, 64, 64);
-  /* drop shadow */
 }
 
 .rarity1 {
@@ -83,7 +90,6 @@
 }
 
 .interactable:hover {
-  /* drop shadow */
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.819);
   border: 3px solid rgb(0, 0, 0);
   z-index: 200;

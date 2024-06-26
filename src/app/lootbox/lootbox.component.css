@@ -33,26 +33,23 @@
 }
 
 .chest-btn {
-  bottom: 0; 
+  bottom: 0;
   position: absolute;
-  filter: none !important; /* Override the inherited filter */
-  animation: none !important; /* Override the inherited animation */
+  filter: none !important;
+  animation: none !important;
 }
 
-/* Specifically target .chest-btn within .renderer-container to override */
 .renderer-container .chest-btn {
   filter: none !important;
   animation: none !important;
 }
 
-/* Reset button-specific styles to override any inheritance */
 .renderer-container .chest-btn {
   filter: none;
   animation: none;
 }
 
-/* Apply higher specificity using CSS variables */
-#rendererContainer > .chest-btn {
+#rendererContainer>.chest-btn {
   --chest-btn-animation: none;
   --chest-btn-filter: none;
   animation: var(--chest-btn-animation) !important;

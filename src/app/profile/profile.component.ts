@@ -8,29 +8,29 @@ import { Router } from '@angular/router';
 
 import { AppComponent } from '../app.component';
 
+// Defines the ProfileComponent with its metadata
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
 })
-
-
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   character: any;
   aviableClasses: any;
 
-  username: string = "";
+  username: string = '';
 
   personality: any;
   newChangedClass: any;
-  newChangedPersonality: String = "";
+  newChangedPersonality: string = '';
 
-  powerText: string = "";
+  powerText: string = '';
 
   userLevel = 0;
 
+  // Constructor for the dependencies of the ProfileComponent
   constructor(
     private characterService: CharacterService,
     private authService: AuthService,
@@ -39,16 +39,18 @@ export class ProfileComponent implements OnInit{
     private appComponent: AppComponent
   ) {}
 
+  // Lifecycle hook called when the component initializes
   ngOnInit() {
-    console.log(this.character);
-    this.setProfilePanel();
+    this.setProfilePanel(); 
   }
 
+  // Logs out the user and navigates to the landing page
   logout() {
     this.authService.logout();
     this.router.navigate(['/landingpage']);
   }
 
+  // Sets up the profile panel with character and user data
   setProfilePanel() {
     const userId = this.authService.getUserId();
 
@@ -59,10 +61,9 @@ export class ProfileComponent implements OnInit{
     this.characterService.getUserCharacter(userId).subscribe((response) => {
       if (response.character) {
         this.character = response.character;
-        this.updatePowerText();
+        this.updatePowerText(); // Update the power text based on character class
       }
     });
-
 
     this.characterService.getUser(userId).subscribe((response) => {
       if (response.user) {
@@ -70,10 +71,10 @@ export class ProfileComponent implements OnInit{
         this.personality = response.user.personalityType;
         this.userLevel = response.user.character.level;
       }
-    }
-    );
+    });
   }
 
+  // Updates the power text based on the character's class
   updatePowerText() {
     switch (this.character.class) {
       case 'warrior':
@@ -115,14 +116,17 @@ export class ProfileComponent implements OnInit{
     }
   }
 
+  // Updates the class selection
   changedClass(value: string) {
     this.newChangedClass = value;
   }
 
+  // Updates the personality selection
   changedPersonality(value: string) {
     this.newChangedPersonality = value;
   }
 
+  // Changes the user's personality
   changePersonality(personality: string) {
     const userId = this.authService.getUserId();
 
@@ -130,14 +134,15 @@ export class ProfileComponent implements OnInit{
       return;
     }
 
-    this.characterService.assignPersonalityToUser(userId, personality).subscribe((response) => {
-      console.log('Personality changed:', personality);
-          /* refresh component */
-      this.setProfilePanel();
-      this.toastr.success('Personality changed successfully');
-    });
+    this.characterService
+      .assignPersonalityToUser(userId, personality)
+      .subscribe((response) => {
+        this.setProfilePanel();
+        this.toastr.success('Personality changed successfully');
+      });
   }
 
+  // Changes the user's class
   changeClass(classType: string) {
     const userId = this.authService.getUserId();
 
@@ -149,23 +154,17 @@ export class ProfileComponent implements OnInit{
       this.newChangedClass = classType;
     }
 
-    if (classType == "berserk") {
-      //execute Parent function
+    if (classType == 'berserk') {
       this.appComponent.specialEvent();
-    //else
     } else {
       this.appComponent.clearSpecialEvent();
     }
 
-    
-
-    this.characterService.assignClassToUser(userId, this.newChangedClass).subscribe((response) => {
-      console.log('Class changed:', response);
-          /* refresh component */
-      this.setProfilePanel();
-      this.toastr.success('Class changed successfully');
-    });
-
-
+    this.characterService
+      .assignClassToUser(userId, this.newChangedClass)
+      .subscribe((response) => {
+        this.setProfilePanel();
+        this.toastr.success('Class changed successfully');
+      });
   }
 }

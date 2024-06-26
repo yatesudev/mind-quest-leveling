@@ -5,15 +5,15 @@ import { ItemService } from '../item.service';
 import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
 
-
+// Defines the ItemComponent with its metadata
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements AfterViewInit {
-  @ViewChild('canvas') private canvasRef!: ElementRef;
-  @ViewChild('button') private buttonRef!: ElementRef;
+  @ViewChild('canvas') private canvasRef!: ElementRef; // Reference to the canvas element
+  @ViewChild('button') private buttonRef!: ElementRef; // Reference to the button element
 
   // Three.js variables
   private renderer!: THREE.WebGLRenderer;
@@ -22,13 +22,20 @@ export class ItemComponent implements AfterViewInit {
   private mesh!: THREE.Mesh;
   private controls!: OrbitControls;
 
-  public lootboxAmount: number = 1;
+  public lootboxAmount: number = 1; // Number of lootboxes available
 
+  // Item details
   public itemName: string = this.itemService.getSelectedItem().name;
   public itemRarity: string = this.itemService.rarityTypeIdtoRarityName(this.itemService.getSelectedItemRarity());
 
-  constructor(private itemService: ItemService, private characterService: CharacterService, private authService: AuthService) { }
+  // Constructor for the dependencies of the ItemComponent
+  constructor(
+    private itemService: ItemService,
+    private characterService: CharacterService,
+    private authService: AuthService
+  ) { }
 
+  // Fetches the number of lootboxes the user has
   getUserLootboxes() {
     const userId = this.authService.getUserId();
 
@@ -36,28 +43,27 @@ export class ItemComponent implements AfterViewInit {
       return;
     }
 
-    this.characterService.getUserLootboxes(userId).subscribe((lootboxResponse) => {
-      console.log('Lootbox response:', lootboxResponse); // Debug log
-      this.lootboxAmount = lootboxResponse.lootboxes;
-      if (this.lootboxAmount > 0) {
-        //display button style block
-        this.buttonRef.nativeElement.style.display = 'block';
+    this.characterService.getUserLootboxes(userId).subscribe(
+      (lootboxResponse) => {
+        this.lootboxAmount = lootboxResponse.lootboxes;
+        if (this.lootboxAmount > 0) {
+          this.buttonRef.nativeElement.style.display = 'block'; // Display button if lootboxes are available
+        }
+      },
+      (error) => {
+        console.error('Error fetching lootboxes:', error);
       }
-    }, (error) => {
-      console.error('Error fetching lootboxes:', error); // Error handling
-    });
-
-    console.log('Lootbox amount:', this.lootboxAmount); // Debug log
+    );
   }
 
+  // Lifecycle hook called after the component's view has been initialized
   ngAfterViewInit(): void {
-    this.initThreeJS();
-
-    this.getUserLootboxes()
+    this.initThreeJS(); // Initialize Three.js
+    this.getUserLootboxes(); // Fetch user lootboxes
   }
 
+  // Initializes the Three.js scene
   private initThreeJS(): void {
-
     // Create the scene
     this.scene = new THREE.Scene();
 
@@ -86,7 +92,6 @@ export class ItemComponent implements AfterViewInit {
       `assets/img/items/${this.itemService.getSelectedItem().name}.png`,
       (texture) => {
         const geometry = new THREE.PlaneGeometry(2, 1);
-
         const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide });
         
         this.mesh = new THREE.Mesh(geometry, material);
@@ -105,13 +110,15 @@ export class ItemComponent implements AfterViewInit {
     );
   }
 
+  // Animation loop for rendering the scene
   private animate = () => {
     requestAnimationFrame(this.animate);
 
-    this.controls.update();
-    this.renderer.render(this.scene, this.camera);
+    this.controls.update(); // Update controls
+    this.renderer.render(this.scene, this.camera); // Render the scene
   };
 
+  // Listener for window resize events
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.camera.aspect = window.innerWidth / window.innerHeight;

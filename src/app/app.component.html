@@ -1,10 +1,8 @@
-
 <div #body [class.monochrome]="isSpecialEvent" class="generalWrapper">
-    <h1 class="mqlHeader">MindQuestLeveling</h1>
-    <audio id="specialEventAudio" src="../assets/audio/berserkmode_edited.mp3" preload="auto"></audio>
-    <router-outlet></router-outlet>
-  </div>
-<div *ngIf="showFooter">
-    <app-footer></app-footer>
+  <h1 class="mqlHeader">MindQuestLeveling</h1>
+  <audio id="specialEventAudio" src="../assets/audio/berserkmode_edited.mp3" preload="auto"></audio>
+  <router-outlet></router-outlet>
 </div>
-  
+<div *ngIf="showFooter">
+  <app-footer></app-footer>
+</div>

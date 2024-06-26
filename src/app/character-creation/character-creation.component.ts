@@ -3,12 +3,14 @@ import { CharacterService } from '../character.service';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 
+// Defines the CharacterCreationComponent with its metadata
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',
   styleUrl: './character-creation.component.css',
 })
 export class CharacterCreationComponent {
+  // Array of questions for the character creation process
   questions = [
     {
       text: 'How do you prefer to spend your free time?',
@@ -117,25 +119,35 @@ export class CharacterCreationComponent {
     },
   ];
 
-  constructor(private characterService: CharacterService, private authService: AuthService,     private toastr: ToastrService // Inject ToastrService here
-  ) {
-    console.log('Character creation component loaded');
-  }
+  // Constructor for the dependencies of the CharacterCreationComponent
+  constructor(
+    private characterService: CharacterService,
+    private authService: AuthService,
+    private toastr: ToastrService // Inject ToastrService here
+  ) {}
 
+  // Tracks the index of the current question
   currentQuestionIndex: number = 0;
+
+  // Initializes the answers object to store the scores for each character class
   answers: { [key: string]: number } = {
     healer: 0,
     rogue: 0,
     warrior: 0,
     mage: 0,
   };
+
+  // Variable to store the assigned character class
   assignedClass: string | null = null;
 
+  // Event handler for answering a question
   onAnswer(option: any): void {
-    Object.keys(option.value).forEach(key => {
+    // Updates the scores for each class based on the selected option
+    Object.keys(option.value).forEach((key) => {
       this.answers[key] += option.value[key];
     });
 
+    // Moves to the next question or submits the answers if all questions are answered
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
     } else {
@@ -143,36 +155,36 @@ export class CharacterCreationComponent {
     }
   }
 
+  // Submits the answers and assigns a character class based on the highest score
   submitAnswers() {
-    console.log('User answers:', this.answers);
-      const maxScore = Math.max(...Object.values(this.answers));
-  const topClasses = Object.keys(this.answers).filter(key => this.answers[key] === maxScore);
-  const assignedClass = topClasses[Math.floor(Math.random() * topClasses.length)];
-    console.log('Assigned class:', assignedClass);
+    const maxScore = Math.max(...Object.values(this.answers));
+    const topClasses = Object.keys(this.answers).filter(
+      (key) => this.answers[key] === maxScore
+    );
+    const assignedClass =
+      topClasses[Math.floor(Math.random() * topClasses.length)];
     this.assignClassToUser(assignedClass);
   }
 
+  // Assigns the character class to the user
   assignClassToUser(characterClass: string) {
     const userId = this.authService.getUserId();
     if (userId) {
-      this.characterService.assignClassToUser(userId, characterClass)
-        .subscribe({
-          next: (response) => {
-            console.log('Class assigned:', response);
-            this.assignedClass = characterClass;
-            this.toastr.success('Character class assigned successfully');
-          },
-          error: (error) => {
-            console.error('Error assigning class:', error);
-            this.toastr.error('Failed to assign character class. Please try again.');
-          }
-        });
+      this.characterService.assignClassToUser(userId, characterClass).subscribe({
+        next: (response) => {
+          this.assignedClass = characterClass;
+          this.toastr.success('Character class assigned successfully');
+        },
+        error: (error) => {
+          this.toastr.error('Failed to assign character class. Please try again.');
+        },
+      });
     } else {
-      console.error('User ID is null');
       this.toastr.error('Failed to get user ID. Please try again.');
     }
   }
 
+  // Returns the image URL for the assigned character class
   getCharacterImage(): string {
     switch (this.assignedClass) {
       case 'warrior':

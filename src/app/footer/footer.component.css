@@ -8,9 +8,8 @@ footer {
     z-index: 300;
 }
 
-
 a {
- z-index: 300;
+    z-index: 300;
 }
 
 ul {
@@ -27,7 +26,7 @@ ul {
     ul {
         width: 80%;
     }
-}   
+}
 
 li {
     width: 6vh;
@@ -45,9 +44,6 @@ li a img {
     border-radius: 50%;
 }
 
-
-
 li:hover {
     scale: 1.2;
 }
-

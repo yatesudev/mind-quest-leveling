@@ -5,9 +5,9 @@
             <h2>Profile Component</h2>
 
             <p>Welcome to your profile page, <span class="epicTitle username">{{username}}</span>!</p>
-            
+
             <p>Here you can see your Basic information, but also have the ability to change your class.</p>
-            
+
             <p>We are all free to take changes!</p>
         </div>
 
@@ -19,7 +19,7 @@
             <br>
         </div>
 
-    </div> 
+    </div>
 
     <br>
 
@@ -49,26 +49,27 @@
 
             <p> Your personality type is: <b>{{personality}}</b></p> <br>
 
-            <select (change)="changedPersonality(personalityType.value)"  #personalityType name="personality-type" >
-            <option value="ISTJ">ISTJ</option>
-            <option value="ISFJ">ISFJ</option>
-            <option value="INFJ">INFJ</option>
-            <option value="INTJ">INTJ</option>
-            <option value="ISTP">ISTP</option>
-            <option value="ISFP">ISFP</option>
-            <option value="INFP">INFP</option>
-            <option value="INTP">INTP</option>
-            <option value="ESTP">ESTP</option>
-            <option value="ESFP">ESFP</option>
-            <option value="ENFP">ENFP</option>
-            <option value="ENTP">ENTP</option>
-            <option value="ESTJ">ESTJ</option>
-            <option value="ESFJ">ESFJ</option>
-            <option value="ENFJ">ENFJ</option>
-            <option value="ENTJ">ENTJ</option>
+            <select (change)="changedPersonality(personalityType.value)" #personalityType name="personality-type">
+                <option value="ISTJ">ISTJ</option>
+                <option value="ISFJ">ISFJ</option>
+                <option value="INFJ">INFJ</option>
+                <option value="INTJ">INTJ</option>
+                <option value="ISTP">ISTP</option>
+                <option value="ISFP">ISFP</option>
+                <option value="INFP">INFP</option>
+                <option value="INTP">INTP</option>
+                <option value="ESTP">ESTP</option>
+                <option value="ESFP">ESFP</option>
+                <option value="ENFP">ENFP</option>
+                <option value="ENTP">ENTP</option>
+                <option value="ESTJ">ESTJ</option>
+                <option value="ESFJ">ESFJ</option>
+                <option value="ENFJ">ENFJ</option>
+                <option value="ENTJ">ENTJ</option>
             </select>
-            <a class="personalityLink underline" href="https://www.16personalities.com/free-personality-test" target="_blank" rel="noopener noreferrer">Find Out Your Personality Type!</a>
-            <button (click)="changePersonality(personalityType.value)" >Accept</button>
+            <a class="personalityLink underline" href="https://www.16personalities.com/free-personality-test"
+                target="_blank" rel="noopener noreferrer">Find Out Your Personality Type!</a>
+            <button (click)="changePersonality(personalityType.value)">Accept</button>
         </div>
     </div>
 
@@ -76,16 +77,18 @@
 
     <div class="content">
         <div class="item">
-            <h2>With great power comes great responsibility.</h2>    
+            <h2>With great power comes great responsibility.</h2>
             <div [innerHTML]="powerText"></div>
         </div>
     </div>
-    
+
     <br>
 
     <div class="content">
-    <div (click)="logout()" class="item interactable">
-        <button class="logoutButton"><p>Logout</p></button>
+        <div (click)="logout()" class="item interactable">
+            <button class="logoutButton">
+                <p>Logout</p>
+            </button>
+        </div>
     </div>
-</div>
 </div>
