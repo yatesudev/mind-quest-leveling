@@ -13,7 +13,7 @@
 /* mobile */
 @media (max-width: 600px) {
     .item {
-        max-width: none;
+        min-width: 90vw;
         margin-top: 0;
     }
 }

@@ -28,11 +28,15 @@
   line-height: 1.2; /* Adjust line height for better text readability */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .inventory-item {
     flex: 1 1 100%; /* Make item take full width */
     max-width: 100%; /* Ensure item occupies full width */
-    min-width: 100%; /* Minimum width to prevent items from shrinking */
+    min-width: 70%; /* Minimum width to prevent items from shrinking */
+  }
+
+  .inventory-container{
+    padding: 10px;
   }
 }
 

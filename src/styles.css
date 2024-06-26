@@ -16,11 +16,14 @@
 body {
     background: #77706f;
     font-family: 'VeniceClassic', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     letter-spacing: 2px;
     overflow: hidden;
     position: relative;
+    margin: 0;
 }
+
+
 
 body::before {
     content: "";
@@ -129,7 +132,7 @@ h2 {
     padding: 16px;
     box-sizing: border-box;
     margin: 0 auto;
-    max-width: 100vh;
+    max-width: 80vw;
     overflow: auto;
     max-height: 100vh;
     min-height: 60vh;
@@ -174,16 +177,33 @@ h2 {
 
 /* one item per row media query if mobile */
 @media screen and (max-width: 900px) {
+
+    h2,
+    h1,
+    h3,
+    .epicTitle{
+        font-size: calc(32px + (28 - 32) * ((100vw - 400px) / (1600 - 400)));
+    }
+
     .item {
         flex: 1 1 100%; /* One item per row */
     }
 
     .content {
         flex-direction: column;
+        padding: 10px !important;
     }
 
+    .responsive-container {
+        max-width: 100vw;
+    }
+
+    body {
+        font-size: 20px;
+    }
 
 }
+
 
 
 /* Keyframes for the fade-in-up animation */
@@ -341,7 +361,7 @@ a {
 
 .mqlHeader {
     text-align: center;
-    font-size: 350%;
+    font-size: 200%;
     padding-bottom: 0;
     margin-bottom: 0;
     

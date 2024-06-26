@@ -40,6 +40,10 @@ export class TasksComponent {
     if (this.iframe) {
       this.iframe.nativeElement.src = url;
       this.currentUrl = url; // Update currentUrl when a website is loaded
+
+      setTimeout(() => {
+        this.iframe.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     } else {
       console.error('Iframe element not found');
     }

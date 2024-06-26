@@ -1,7 +1,9 @@
 [
-  { "id": "tes_1", "name": "Nature Walk", "description": "Take a peaceful walk in nature to relax and rejuvenate.", "xp": 30, "time": 0.01 },
-  { "id": "tes_2", "name": "Reading Session", "description": "Read a book from your favorite genre to unwind and stimulate your mind.", "xp": 20, "time": 0.01 },
-  { "id": "tes_3", "name": "Gardening", "description": "Spend time gardening to connect with nature and nurture plants.", "xp": 30, "time": 0.01 },
-  { "id": "tes_4", "name": "Artistic Expression", "description": "Engage in a creative activity like drawing, painting, or crafting.", "xp": 25, "time": 0.01 },
-  { "id": "tes_5", "name": "Cooking Experiment", "description": "Try cooking a new recipe or dish to expand your culinary skills.", "xp": 25, "time": 0.01 }
+  { "id": "tes_1", "name": "Speak to Us About the App", "description": "ave a conversation with us about your experience using the app so far.", "xp": 60, "time": 0.01 },
+  { "id": "tes_2", "name": "Give Us Feedback", "description": "Provide your honest feedback on the app to help us improve.", "xp": 60, "time": 0.01 },
+  { "id": "tes_3", "name": "Share Your Favorite Feature", "description": "Let us know which feature of the app you like the most and why.", "xp": 60, "time": 0.01 },
+  { "id": "tes_4", "name": "Complete a Survey", "description": "Fill out a short survey about your user experience to help us gather valuable insights.", "xp": 60, "time": 0.01 },
+  { "id": "tes_5", "name": "Show Us Your Favorite Item", "description": "Share your favorite item and tell us why it's special to you.", "xp": 60, "time": 0.01 },
+  { "id": "tes_6", "name": "Show Us Your Favorite Task", "description": "Describe your favorite task in the app.", "xp": 60, "time": 0.01 },
+  { "id": "tes_7", "name": "Joke of the Day", "description": "Share a joke to brighten everyone's day. It can be a classic or one you made up yourself.", "xp": 60, "time": 0.01 }
 ]

@@ -58,3 +58,20 @@
 .inline-block {
     margin-bottom: 10px;
 }
+
+@media screen and (max-width: 600px) {
+    .class-image {
+        width: 150px;
+        height: 150px;
+        margin-top: 15px;
+    }
+
+    .logo-image {
+        display: none;
+    }
+
+    button {
+        min-width: 40vw;
+        font-size: 1.5rem;
+    }
+}

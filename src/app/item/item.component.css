@@ -30,16 +30,18 @@ button:hover {
     scale: 1.1;
 } 
 
-.go-to-dashboard-btn{
+.open-another-button{
     transform: translate(-50%,-50%);
     position: absolute;
-    top: 90%;
+    top: 70%;
     left: 50%;
 }
 
-.sell-item-btn{
-    bottom: 150px; 
-    position: absolute;
+ /* adapt .canvas-button font-size on mobile */
+@media only screen and (max-width: 900px) {
+    .canvas-button {
+        font-size: 2rem;
+    }
 }
 
 .container-wrapper {

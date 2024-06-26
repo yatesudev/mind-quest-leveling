@@ -15,11 +15,11 @@ export class CharacterCreationComponent {
       options: [
         {
           text: 'Reading or solving puzzles',
-          value: { healer: 1, rogue: 2, warrior: 1, mage: 3 },
+          value: { healer: 2, rogue: 3, warrior: 1, mage: 3 },
         },
         {
           text: 'Playing sports or exercising',
-          value: { healer: 1, rogue: 2, warrior: 3, mage: 1 },
+          value: { healer: 1, rogue: 3, warrior: 3, mage: 1 },
         },
         {
           text: 'Socializing with friends',
@@ -27,7 +27,7 @@ export class CharacterCreationComponent {
         },
         {
           text: 'Engaging in creative hobbies like painting or writing',
-          value: { healer: 2, rogue: 1, warrior: 1, mage: 3 },
+          value: { healer: 3, rogue: 1, warrior: 1, mage: 3 },
         },
       ],
     },
@@ -36,7 +36,7 @@ export class CharacterCreationComponent {
       options: [
         {
           text: 'Learning new things or attending workshops',
-          value: { healer: 1, rogue: 2, warrior: 1, mage: 3 },
+          value: { healer: 2, rogue: 2, warrior: 1, mage: 3 },
         },
         {
           text: 'Participating in team sports or fitness classes',
@@ -44,11 +44,11 @@ export class CharacterCreationComponent {
         },
         {
           text: 'Volunteering or helping others',
-          value: { healer: 3, rogue: 1, warrior: 2, mage: 1 },
+          value: { healer: 3, rogue: 1, warrior: 3, mage: 1 },
         },
         {
           text: 'Playing strategy games or planning events',
-          value: { healer: 2, rogue: 1, warrior: 1, mage: 3 },
+          value: { healer: 2, rogue: 3, warrior: 2, mage: 3 },
         },
       ],
     },
@@ -78,19 +78,19 @@ export class CharacterCreationComponent {
       options: [
         {
           text: 'Academic or career goals that challenge your mind',
-          value: { healer: 1, rogue: 2, warrior: 1, mage: 3 },
+          value: { healer: 2, rogue: 1, warrior: 1, mage: 3 },
         },
         {
           text: 'Fitness or health-related goals',
-          value: { healer: 1, rogue: 2, warrior: 3, mage: 1 },
+          value: { healer: 1, rogue: 3, warrior: 3, mage: 1 },
         },
         {
           text: 'Building and maintaining strong relationships',
-          value: { healer: 3, rogue: 1, warrior: 2, mage: 1 },
+          value: { healer: 3, rogue: 1, warrior: 3, mage: 1 },
         },
         {
           text: 'Personal growth goals, like learning a new hobby',
-          value: { healer: 2, rogue: 1, warrior: 1, mage: 3 },
+          value: { healer: 3, rogue: 2, warrior: 2, mage: 3 },
         },
       ],
     },
@@ -99,11 +99,11 @@ export class CharacterCreationComponent {
       options: [
         {
           text: 'Attending a seminar or reading a book',
-          value: { healer: 1, rogue: 2, warrior: 1, mage: 3 },
+          value: { healer: 2, rogue: 2, warrior: 1, mage: 3 },
         },
         {
           text: 'Hiking or playing sports',
-          value: { healer: 1, rogue: 2, warrior: 3, mage: 1 },
+          value: { healer: 1, rogue: 3, warrior: 3, mage: 1 },
         },
         {
           text: 'Hosting a get-together or meeting new people',
@@ -111,7 +111,7 @@ export class CharacterCreationComponent {
         },
         {
           text: 'Working on a personal project or crafting',
-          value: { healer: 2, rogue: 1, warrior: 1, mage: 3 },
+          value: { healer: 2, rogue: 2, warrior: 2, mage: 2 },
         },
       ],
     },
@@ -145,7 +145,9 @@ export class CharacterCreationComponent {
 
   submitAnswers() {
     console.log('User answers:', this.answers);
-    const assignedClass = Object.keys(this.answers).reduce((a, b) => this.answers[a] > this.answers[b] ? a : b);
+      const maxScore = Math.max(...Object.values(this.answers));
+  const topClasses = Object.keys(this.answers).filter(key => this.answers[key] === maxScore);
+  const assignedClass = topClasses[Math.floor(Math.random() * topClasses.length)];
     console.log('Assigned class:', assignedClass);
     this.assignClassToUser(assignedClass);
   }
