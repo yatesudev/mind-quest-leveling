@@ -33,22 +33,6 @@ Mind Quest Leveling (MQL) is a web application that integrates gamification with
 - **Browser Pop-ups**: Get notifications for available quests or reminders.
 - **Tasks**: Engage in psychological tasks, mindfulness exercises, and educational content.
 
-## Screenshots
-### Ladning Page
-![Quests](path_to_image/quests.png)
-
-### Character Creation
-![Character Creation](path_to_image/character_creation.png)
-
-### Quests
-![Quests](path_to_image/quests.png)
-
-### Advnture Chest
-![Inventory](path_to_image/inventory.png)
-
-### Inventory
-![Inventory](path_to_image/inventory.png)
-
 ## Development
 
 ### Frontend
