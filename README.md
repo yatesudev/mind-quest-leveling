@@ -1,40 +1,82 @@
-# MindQuestLeveling
+# Mind Quest Leveling (MQL)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+## Overview
+Mind Quest Leveling (MQL) is a web application that integrates gamification with mental health support. The app helps users manage their goals and make the most of their free time by engaging in enjoyable, game-like activities. It features automatic character creation based on user input, tailored quest assignments to encourage positive behavior, and rewards for completing quests, such as new items. The application is built using **Angular** and **ThreeJS** for the frontend, with **NodeJS** and **MongoDB** handling the backend.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### User Functions
+- **Account Management**:
+  - Create an account with secure password standards.
+  - Automatically generate a character based on responses about work, sleep, activities, and personal goals.
+  - Assign an RPG class based on lifestyle and daily schedule.
+  - Delete accounts when necessary.
+  
+- **Settings**:
+  - Change passwords.
+  - Optionally customize the theme.
+  - Input personality type based on the 16 personality test.
 
-## Code scaffolding
+### Quests
+- Quests are predefined according to the user’s assigned class.
+- Designed to motivate and reinforce positive behaviors.
+- Includes universal quests like meditation or self-improvement tasks.
+- Quest completion is restricted during sleeping or working hours.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Items & Inventory
+- Rewards from quests include new character designs, weapon skins, and cosmetics.
+- Items are classified by rarity (Basic, Heroic, Mythic, Legendary).
+- Organize and sort items within the inventory.
 
-## Build
+### Leveling System
+- Earn experience points (XP) from loot boxes and daily logins.
+- Higher levels unlock better items from loot boxes.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Optional Features
+- **Friendship List**: View and interact with friends' profiles.
+- **Browser Pop-ups**: Get notifications for available quests or reminders.
+- **Tasks**: Engage in psychological tasks, mindfulness exercises, and educational content.
 
-## Running unit tests
+## Screenshots
+### Character Creation
+![Character Creation](path_to_image/character_creation.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Quests
+![Quests](path_to_image/quests.png)
 
-## Running end-to-end tests
+### Inventory
+![Inventory](path_to_image/inventory.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Development
 
-## Further help
+### Frontend
+- **Angular**: Main framework for building the user interface.
+- **ThreeJS**: For rendering 3D graphics.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Backend
+- **NodeJS**: Server-side logic.
+- **MongoDB**: Database management.
 
+## Installation & Usage
 
-## Server Installation
+### Development Server
+1. Navigate to the project directory.
+2. Run `ng serve` to start the development server.
+3. Open `http://localhost:4200/` in your browser. The application will reload automatically with changes to the source files.
 
-To install the server dependencies, navigate to the `/server/` directory and run:
+### Building the Project
+- Run `ng build` to compile the project. The build artifacts will be stored in the `dist/` directory.
 
-`cd ./server/`
-`npm install`
+### Running Tests
+- **Unit Tests**: Run `ng test` using [Karma](https://karma-runner.github.io) to execute unit tests.
+- **End-to-End Tests**: Run `ng e2e` for end-to-end tests. You need to install a package that supports e2e testing first.
 
+### Server Installation
+1. Navigate to the `/server/` directory.
+2. Run `npm install` to install server dependencies.
 
-## To run the server
+### Running the Server
+- Start the server with `node server.js`.
 
-`node server.js`
+## Further Help
+For more information on using the Angular CLI, run `ng help` or check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
