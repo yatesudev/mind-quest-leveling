@@ -5,44 +5,46 @@ Mind Quest Leveling (MQL) is a web application that integrates gamification with
 
 ## Features
 
-### User Functions
-- **Account Management**:
-  - Create an account with secure password standards.
-  - Automatically generate a character based on responses about work, sleep, activities, and personal goals.
-  - Assign an RPG class based on lifestyle and daily schedule.
-  - Delete accounts when necessary.
-  
-- **Settings**:
-  - Change passwords.
-  - Optionally customize the theme.
-  - Input personality type based on the 16 personality test.
+### User Profile
+- Create an account with secure password standards.
+- Automatically generate a character and assign an RPG class based on lifestyle.
+- Change the assigned RPG class.
+- Input personality type based on the 16 personality test.
+
+### Leveling System
+- Earn experience points (XP) from completing the quests.
 
 ### Quests
 - Quests are predefined according to the user’s assigned class.
 - Designed to motivate and reinforce positive behaviors.
 - Includes universal quests like meditation or self-improvement tasks.
-- Quest completion is restricted during sleeping or working hours.
+
+### Adventure Chest
+- Receive an **Adventure Chest** after completing quests.
+- Chests contain various rewards such as new weapon skins, items and cosmetics.
+- Items are classified by rarity: Basic, Heroic, Mythic, Legendary.
 
 ### Items & Inventory
 - Rewards from quests include new character designs, weapon skins, and cosmetics.
 - Items are classified by rarity (Basic, Heroic, Mythic, Legendary).
 - Organize and sort items within the inventory.
 
-### Leveling System
-- Earn experience points (XP) from loot boxes and daily logins.
-- Higher levels unlock better items from loot boxes.
-
-### Optional Features
-- **Friendship List**: View and interact with friends' profiles.
+### Other Features
 - **Browser Pop-ups**: Get notifications for available quests or reminders.
 - **Tasks**: Engage in psychological tasks, mindfulness exercises, and educational content.
 
 ## Screenshots
+### Ladning Page
+![Quests](path_to_image/quests.png)
+
 ### Character Creation
 ![Character Creation](path_to_image/character_creation.png)
 
 ### Quests
 ![Quests](path_to_image/quests.png)
+
+### Advnture Chest
+![Inventory](path_to_image/inventory.png)
 
 ### Inventory
 ![Inventory](path_to_image/inventory.png)
