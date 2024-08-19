@@ -3,6 +3,9 @@
 ## Overview
 Mind Quest Leveling (MQL) is a web application that integrates gamification with mental health support. The app helps users manage their goals and make the most of their free time by engaging in enjoyable, game-like activities. It features automatic character creation based on user input, tailored quest assignments to encourage positive behavior, and rewards for completing quests, such as new items. The application is built using **Angular** and **ThreeJS** for the frontend, with **NodeJS** and **MongoDB** handling the backend.
 
+### Dashboard
+<img src="dashboard.png" alt="MQL Dashboard" width="800"/>
+
 ## Features
 
 ### User Profile
