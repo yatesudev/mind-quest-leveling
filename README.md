@@ -66,6 +66,3 @@ Mind Quest Leveling (MQL) is a web application that integrates gamification with
 
 ### Running the Server
 - Start the server with `node server.js`.
-
-## Further Help
-For more information on using the Angular CLI, run `ng help` or check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
